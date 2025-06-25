@@ -1,0 +1,3432 @@
+{
+    "hostname": {
+        "Configuration": "hostname",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "system-info",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=system-info#/system-info/readSystemInfo",
+        "Profile Category": "System",
+        "Profile Name": "System Information",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmp-server community": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "snmp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=snmp#/snmp/createSnmpByID",
+        "Profile Category": "System",
+        "Profile Name": "SNMP",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "snmp-server\\s+community\\s+(\\S+)",
+                            "group": 1,
+                            "replace": "{{community}}"
+                            },
+                            "match_con2": {
+                              "pattern": "",
+                              "static_value": "true",
+                              "replace": "{{v2c_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmp-server vrf ": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "snmp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=snmp#/snmp/createSnmpByID",
+        "Profile Category": "System",
+        "Profile Name": "SNMP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmp-server system-location": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "system-info",
+        "API Name": "system-info",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=system-info",
+        "Profile Category": "System",
+        "Profile Name": "System Information",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmp-server system-contact": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "system-info",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=system-info",
+        "Profile Category": "System",
+        "Profile Name": "System Information",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmpv3 user": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "snmp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=snmp#/snmp/createSnmpByID",
+        "Profile Category": "System",
+        "Profile Name": "SNMP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmpv3 security-level": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "snmp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=snmp#/snmp/createSnmpByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "snmpv3 engine-id": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "system-info",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=system-info",
+        "Profile Category": "System",
+        "Profile Name": "System Information",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip dns domain-name": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "dns",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dns#/dns/createDnsByID",
+        "Profile Category": "System",
+        "Profile Name": "DNS Server",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip dns server-address": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "dns",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dns#/dns/createDnsByID",
+        "Profile Category": "System",
+        "Profile Name": "DNS Server",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ntp server": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ntp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ntp#/ntp/createNtpByID",
+        "Profile Category": "System",
+        "Profile Name": "NTP Server",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create NTP Server",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "ntp",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "ntp server (\\S+)",
+                            "group": 1,
+                            "replace": "{{ntp_server}}"
+                            },
+                            "match_con2": {
+                              "pattern": ".*iburst\\b.*$",
+                              "static_value": "ALWAYS",
+                              "replace": "{{iburst}}"
+                            },
+                            "match_con3": {
+                              "pattern": ".*iburst\\b.*$",
+                              "static_value": "IBURST",
+                              "replace": "{{tx_mode}}"
+                            },
+                           "match_con4": {
+                              "pattern": "ntp\\s+server\\s+\\d{1,3}(?:\\.\\d{1,3}){3}\\s+iburst\\s+version\\s+(\\d+)",
+                              "group": 1,
+                              "replace": "{{ntp_version}}"
+                            },
+                            "match_con5": {
+                              "pattern": ".*minpoll\\s+(\\d+).*",
+                              "group": 1,
+                              "replace": "{{min_poll}}"
+                            },
+                            "match_con6": {
+                              "pattern": ".*maxpoll\\s+(\\d+).*",
+                              "group": 1,
+                              "replace": "{{max_poll}}"
+                            },
+                            "match_con7": {
+                              "pattern": ".*prefer\\b.*",
+                              "static_value": "true",
+                              "replace": "{{prefer}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "allow-unsupported-transceiver": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "switch-system",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=switch-system#/switch-system",
+        "Profile Category": "System",
+        "Profile Name": "Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Switch System Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Create Switch System Profile",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{enable_unsupported_transceiver}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "dot1x authenticator": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "switch-system",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/updateSwPortProfilesProfileLoopProtectByID",
+        "Profile Category": "Security, System",
+        "Profile Name": "AAA Authentication, Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Switch System Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Create Switch System Profile",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{aaa_dot1x_auth_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "eapol-timeout": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-dot1xauth",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-dot1xauth#/dot1xauth/createDot1xauthByID",
+        "Profile Category": "Security, System",
+        "Profile Name": "AAA Authentication, Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "max-eapol-requests": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-dot1xauth",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-dot1xauth#/dot1xauth/createDot1xauthByID",
+        "Profile Category": "Security, System",
+        "Profile Name": "AAA Authentication, Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "max-retries": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-dot1xauth",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-dot1xauth#/dot1xauth/createDot1xauthByID",
+        "Profile Category": "Security, System",
+        "Profile Name": "AAA Authentication, Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "mac-auth": {
+        "Configuration": "",
+        "Sub Match Condition": "aaa authentication port-access mac-auth",
+        "comments": "",
+        "API Name": "aaa-macauth, sw-port-profiles, switch-system",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-macauth#/macauth/createMacauthByID\n https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=switch-system",
+        "Profile Category": "Security, System",
+        "Profile Name": "AAA Authentication, Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "auth-method": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "switch-system",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=switch-system#/switch-system/createSwitchSystemByID",
+        "Profile Category": "System",
+        "Profile Name": "Switch System",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "onboarding-method": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profiles",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Security",
+        "Profile Name": "AAA Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "auth-precedence": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-profile",
+        "Profile Category": "Security",
+        "Profile Name": "AAA Authentication",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "client-limit": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-profile",
+        "Profile Category": "Security",
+        "Profile Name": "AAA Authentication",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "critical-role": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-profile",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "reject-role": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-profile",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "addr-format": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "aaa-macauth",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=aaa-macauth",
+        "Profile Category": "Security",
+        "Profile Name": "AAA Authentication",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "dhcpv4-snooping trust": {
+        "Configuration": "",
+        "Sub Match Condition": "dhcpv4-snooping trust",
+        "comments": "Avalible at the Device Scope level",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-ethernet",
+        "Profile Category": "Switch Interfaces Configuration",
+        "Profile Name": "Interfaces",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "dhcpv4-snooping max-bindings": {
+        "Configuration": "",
+        "Sub Match Condition": "dhcpv4-snooping max-bindings",
+        "comments": "",
+        "API Name": "dhcpv4-snooping",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dhcp-snooping-interface",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "dhcpv4-snooping": {
+        "Configuration": "",
+        "Sub Match Condition": "dhcpv4-snooping",
+        "comments": "",
+        "API Name": "dhcp-snooping",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dhcp-snooping#/dhcp-snooping/createDhcpSnoopingByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": true,
+        "Postman Call": "Dhcpv4 Snooping",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Enable Dhcpv4 Snooping",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{dhcpv4_snooping_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "dhcpv4-snooping option 82": {
+        "Configuration": "",
+        "Sub Match Condition": "dhcpv4-snooping",
+        "comments": "",
+        "API Name": "dhcp-snooping",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dhcp-snooping#/dhcp-snooping/createDhcpSnoopingByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "arp inspection": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "VERIFY",
+        "API Name": "dynamic-arp-inspection",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dynamic-arp-inspection",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{dynamic_arp_inspection_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "arp inspection trust": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "To view this in the UI you must be at a switch device level.",
+        "API Name": "dynamic-arp-inspection-interface",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=dynamic-arp-inspection-interface",
+        "Profile Category": "Switch Interface Configuration",
+        "Profile Name": "Interfaces",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ssh server": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management#/local-management/createLocalManagementByID",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "vlan": {
+        "Configuration": "",
+        "Sub Match Condition": "vlan\\s(\\d{1,4})",
+        "comments": "",
+        "API Name": "vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vlan",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "VLAN",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create L2 vlan",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Create L2 vlan",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "vlan\\s(\\d{1,4})",
+                            "group": 1,
+                            "replace": "{{vlan_id}}"
+                            },
+                            "match_con2": {
+                              "pattern": "",
+                              "static_value": "true",
+                              "replace": "{{vlan_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "name": {
+        "Configuration": "",
+        "Sub Match Condition": "name\\s+([\\w\\-\\.\\/]+)",
+        "comments": "",
+        "API Name": "vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vlan",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "VLAN",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create L2 vlan",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Create L2 vlan",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "name\\s+(\\w+)",
+                            "group": 1,
+                            "replace": "{{vlan_name}}"
+                            },
+                          "match_con2": {
+                              "pattern": "",
+                              "static_value": "true",
+                              "replace": "{{vlan_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "interface vlan": {
+        "Configuration": "",
+        "Sub Match Condition": "interface\\s+vlan\\s+(\\d{1,4})",
+        "comments": "",
+        "API Name": "interface-vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-vlan",
+        "Profile Category": "VLAN",
+        "Profile Name": "VLANs & Networks",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Interfaces VLAN",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                          "match_con1": {
+                            "pattern": "interface\\s+vlan\\s+(\\d{1,4})",
+                            "group": 1,
+                            "replace": "{{vlan_id}}"
+                            },
+                          "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{is_valid}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip helper-address": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "interface-vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-vlan",
+        "Profile Category": "VLAN",
+        "Profile Name": "VLANs & Networks",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "ip helper-address (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})",
+                            "group": 1,
+                            "replace": "{{ipv4_helper_address}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "interface lag": {
+        "Configuration": "",
+        "Sub Match Condition": "interface\\s+lag\\s+\\d+$",
+        "comments": "",
+        "API Name": "interface-portchannel",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-portchannel#/portchannels/createPortchannelsByID",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Switch interface Configuration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "^interface \\d+\\/\\d+\\/\\d+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Port Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Ethernet Interface Configuration",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                      {
+                        "match_con1": {
+                          "pattern": "",
+                          "static_value": "true",
+                          "replace": "{{enable_switchport}}"
+                        },
+                        "match_con2": {
+                          "pattern": "",
+                          "static_value": "AUTO",
+                          "replace": "{{speed-duplex}}"
+                        }
+                      }
+                    ]
+        }
+    },
+    "vlan access": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Port Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Ethernet Interface Configuration",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                      {
+                        "match_con1": {
+                          "pattern": "",
+                          "static_value": "ACCESS",
+                          "replace": "{{interface-mode}}"
+                        },
+                        "match_con2": {
+                          "pattern": "vlan access (\\d+)$",
+                          "group": 1,
+                          "replace": "{{access_vlan}}"
+                        }
+                      }
+                    ]
+        }
+    },
+    "vlan trunk native": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Port Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Ethernet Interface Configuration",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                      {
+                        "match_con1": {
+                          "pattern": "",
+                          "static_value": "TRUNK",
+                          "replace": "{{interface-mode}}"
+                        },
+                        "match_con2": {
+                          "pattern": "vlan trunk allowed ((\\d+(-\\d+)?)(,\\d+(-\\d+)?)*?)$",
+                          "group": 1,
+                          "replace": "{{trunked_vlans}}"
+                        }
+                      }
+                    ]
+        }
+    },
+      "vlan trunk allowed all": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "Port Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Ethernet Interface Configuration",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                      {
+                        "match_con1": {
+                          "pattern": "",
+                          "static_value": "TRUNK",
+                          "replace": "{{interface-mode}}"
+                        },
+                        "match_con2": {
+                          "pattern": "vlan trunk allowed ((\\d+(-\\d+)?)(,\\d+(-\\d+)?)*?)$",
+                          "group": 1,
+                          "replace": "{{trunked_vlans}}"
+                        }
+                      }
+                    ]
+        }
+    },
+  "vlan\\s+trunk\\s+allowed\\s+(\\d+(-\\d+)?(,\\d+(-\\d+)?)*)": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "Port Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Ethernet Interface Configuration",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                      {
+                        "match_con1": {
+                          "pattern": "",
+                          "static_value": "TRUNK",
+                          "replace": "{{interface-mode}}"
+                        },
+                        "match_con2": {
+                          "pattern": "vlan trunk allowed ((\\d+(-\\d+)?)(,\\d+(-\\d+)?)*?)$",
+                          "group": 1,
+                          "replace": "{{trunked_vlans}}"
+                        }
+                      }
+                    ]
+        }
+    },
+    "mtu": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "",
+        "API Documentation": "MTU Is handle under the relative interface",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip igmp snooping enable": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vlan#/layer2-vlan/createLayer2VlanByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree": {
+        "Configuration": "",
+        "Sub Match Condition": "spanning-tree",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree mode": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree priority": {
+        "Configuration": "",
+        "Sub Match Condition": "spanning-tree\\s+priority\\s+(\\d+)",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree vlan": {
+        "Configuration": "",
+        "Sub Match Condition": "spanning-tree\\s+vlan\\s+(\\d+(-\\d+)?(,\\d+(-\\d+)?)*)",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree config-name": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree config-revision": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree instance 1 vlan": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "stp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=stp#/stp/createStpByID",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "STP",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree bpdu-guard": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "BPDU Guard",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{bpdu-guard}}"
+                            },
+                          "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree root-guard": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Root Guard",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{root-guard}}"
+                            },
+                            "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree tcn-guard": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profiles",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "TCN Guard",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{tcn-guard}}"
+                            },
+                            "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree port-type admin-edge": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Admin Edge",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{admin-edge-port}}"
+                            },
+                            "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree bpdu-filter": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "BPDU Filter",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{bpdu-filter}}"
+                            },
+                            "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree rpvst-filter": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{rpvst-filter}}"
+                            },
+                          "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree loop-guard": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree  root-guard": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{root-guard}}"
+                            },
+                          "match_con2": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{stp_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree port-type admin-network": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "spanning-tree port-priority": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/createSwPortProfiles",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "loop-protect": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "loop-protect",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=loop-protect#/loop-protect/createLoopProtectByID\nhttps://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-ethernet",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "static_value": "true",
+                            "replace": "{{loop-protect-enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "loop-protect action": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profiles",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=loop-protect#/loop-protect/createLoopProtectByID",
+        "Profile Category": "Interface",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                          "match_con1": {
+                              "pattern": "loop-protect action (tx-rx-disable)",
+                              "static_value": "TX_RX_DISABLE",
+                              "replace": "{{loop-protect-action}}"
+                            },
+                          "match_con2": {
+                              "pattern": "loop-protect action (tx-disable)",
+                              "static_value": "TX_DISABLE",
+                              "replace": "{{loop-protect-action}}"
+                            },
+                          "match_con3": {
+                              "pattern": "",
+                              "static_value": "DO_NOT_DISABLE",
+                              "replace": "{{loop-protect-action}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "port-access role": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "role",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=role#/roles/createRolesByID",
+        "Profile Category": "Roles & Policies",
+        "Profile Name": "Roles",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con2": {
+                              "pattern": ".*iburst\\b.*$",
+                              "static_value": "ALWAYS",
+                              "replace": "{{iburst}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "port-access lldp-group": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "device-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=device-profile#/device-profile/createDeviceProfileByID",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Device Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "port-access device-profile": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "device-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=device-profile#/device-profile/createDeviceProfileByID",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Device Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "fault-monitor profile": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-broadcasts": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Switch System Profile",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                              "pattern": "^\\s*excessive-broadcasts\\s*$",
+                              "static_value": "NOTIFY",
+                              "replace": "{{fault_monitor_excessive_broadcasts_action}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-link-flaps": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-jabbers": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-fragments": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-crc-errors": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "excessive-tx-drops": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "fault-monitor",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=fault-monitor",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Fault Monitoring",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "radius-server host": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-servers",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server#/auth-servers/createAuthServersByID",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Auth Server",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Radius Server",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "radius-server\\s+host\\s+([a-zA-Z0-9.-]+)",
+                            "group": 1,
+                            "replace": "{{auth_server_address}}"
+                            },
+                            "match_con2": {
+                              "pattern": "",
+                              "static_value": "RADIUS",
+                              "replace": "{{server_type}}"
+                            },
+                            "match_con3": {
+                              "pattern": "radius-server.*\\s+ciphertext\\s+(\\S+)",
+                              "group": 1,
+                              "replace": "{{shared_secret_config_ciphertext_value}}"
+                            },
+                            "match_con4": {
+                              "pattern": "radius-server.*\\s+ciphertext",
+                              "static_value": "CIPHER_TEXT",
+                              "replace": "{{shared_secret_config_secret_type}}"
+                            },
+                            "match_con5": {
+                              "pattern": "radius-server.*\\s+plaintext",
+                              "static_value": "PLAIN_TEXT",
+                              "replace": "{{shared_secret_config_plaintext_value}}"
+                            },
+                            "match_con6": {
+                              "pattern": "radius-server.*\\s+timeout\\s+(\\d+)",
+                              "group": 1,
+                              "replace": "{{timeout}}"
+                            },
+                            "match_con7": {
+                              "pattern": "",
+                              "static_value": "true",
+                              "replace": "{{enable}}"
+                            },
+                            "match_con8": {
+                              "pattern": "radius-server.*\\s+tracking enable",
+                              "static_value": "true",
+                              "replace": "{{tracking_enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "tacacs-server host": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-servers",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server#/auth-servers/createAuthServersByID",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server",
+        "Configuration Method": "API/UI",
+        "Postman API": true,
+        "Postman Call": "Create Auth Server",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "Tacacs Server",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "tacacs-server\\s+host\\s+([a-zA-Z0-9.-]+)",
+                            "group": 1,
+                            "replace": "{{auth_server_address}}"
+                            },
+                            "match_con2": {
+                              "pattern": "",
+                              "static_value": "TACACS",
+                              "replace": "{{server_type}}"
+                            },
+                            "match_con3": {
+                              "pattern": "tacacs-server.*\\s+ciphertext\\s+(\\S+)",
+                              "group": 1,
+                              "replace": "{{shared_secret_config_ciphertext_value}}"
+                            },
+                            "match_con4": {
+                              "pattern": "tacacs-server.*\\s+ciphertext",
+                              "static_value": "CIPHER_TEXT",
+                              "replace": "{{shared_secret_config_secret_type}}"
+                            },
+                            "match_con5": {
+                              "pattern": "tacacs-server.*\\s+plaintext",
+                              "static_value": "PLAIN_TEXT",
+                              "replace": "{{shared_secret_config_plaintext_value}}"
+                            },
+                            "match_con6": {
+                              "pattern": "tacacs-server.*\\s+timeout\\s+(\\d+)",
+                              "group": 1,
+                              "replace": "{{timeout}}"
+                            },
+                            "match_con7": {
+                              "pattern": "",
+                              "static_value": "true",
+                              "replace": "{{enable}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "radius dyn-authorization enable": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-servers",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server#/auth-servers/createAuthServersByID",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "radius dyn-authorization client": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "In the API call the type must be set to  \"type\": \"RFC3576\"",
+        "API Name": "auth-server",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+      "aaa accounting port-access start-stop": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "switch-system",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=switch-system#/switch-system/createSwitchSystem",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa group server radius": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-server-group",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server-group",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa group server tacacs": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-server-group",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server-group",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "radius\\s+server-group\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "auth-server-group",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=auth-server-group",
+        "Profile Category": "Security",
+        "Profile Name": "Authentication Server Group",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "client track ip": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "client-iptracker",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=client-iptracker#/client-iptracker/createClientIptrackerByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa authentication login default group": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management#/local-management/createLocalManagementByID",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa authentication login https-server group": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management#/local-management/createLocalManagementByID",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa authentication login ssh group": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management#/local-management/createLocalManagementByID",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "aaa authentication login console group": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management#/local-management/createLocalManagementByID",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "banner motd": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "local-management",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=local-management",
+        "Profile Category": "System",
+        "Profile Name": "System Administration",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "vsf member": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "switch-stack",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=switch-stack#/stacks/createStacksByID",
+        "Profile Category": "High Availability (Select site to make it appear)",
+        "Profile Name": "VSF (Select site to make it appear)",
+        "Configuration Method": "UI/API",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "vsx": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "vsx",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vsx#/vsx-profiles/createVsxProfilesByID",
+        "Profile Category": "High Availability (Select site to make it appear)",
+        "Profile Name": "VSX (Select site to make it appear)",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "system-mac": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "vsx",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vsx#/vsx-profiles/createVsxProfilesByID",
+        "Profile Category": "High Availability",
+        "Profile Name": "VSX",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "inter-switch-link": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "vsx",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vsx#/vsx-profiles/createVsxProfilesByID",
+        "Profile Category": "High Availability",
+        "Profile Name": "VSX",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "active-gateway ip": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "interface-vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-vlan#/vlan-interfaces/createVlanInterfacesByID",
+        "Profile Category": "High Availability",
+        "Profile Name": "VSX",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "active-gateway ip mac": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "interface-vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-vlan#/vlan-interfaces/createVlanInterfacesByID",
+        "Profile Category": "High Availability",
+        "Profile Name": "VSX",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+      "ip\\s+static\\s+\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "static-route",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=static-route",
+        "Profile Category": "Routing & Overlays",
+        "Profile Name": "Static Routing",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "router ospf": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ospfv2",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ospfv2#/ospfv2/createOspfv2ByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "passive-interface default": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ospfv2",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ospfv2#/ospfv2/createOspfv2ByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "area 0.0.0.0": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ospfv2",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ospfv2#/ospfv2/createOspfv2ByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "no ip ospf passive": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ospfv2",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ospfv2#/ospfv2/createOspfv2ByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip ospf 1 area 0.0.0.0": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ospfv2",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ospfv2#/ospfv2/createOspfv2ByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "bfd": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "bfd",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=bfd#/bfd/createBfdByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "router bgp": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "bgp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=bgp#/bgp/createBgpByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "bgp": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "bgp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=bgp#/bgp/createBgpByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "fall-over bfd": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "bgp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=bgp#/bgp/createBgpByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "address-family": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "bgp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=bgp#/bgp/createBgpByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "router pim": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "multicast",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=multicast#/multicast-global/createMulticastGlobalByID",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip pim-sparse enable": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile, interface-vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=interface-vlan",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "ip igmp enable": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "vlan",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=vlan#/layer2-vlan/createLayer2Vlan",
+        "Profile Category": "VLANs & Networks",
+        "Profile Name": "VLAN",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "qos trust dscp": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "sw-port-profile",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=sw-port-profile#/sw-port-profiles/updateSwPortProfilesProfileLoopProtectByID",
+        "Profile Category": "Interfaces",
+        "Profile Name": "Port",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+        "ubt\\s+zone\\s+\\S+\\s+vrf\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ubt",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ubt",
+        "Profile Category": "Security",
+        "Profile Name": "UBT Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "ubt-client-vlan\\s+\\d+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ubt",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ubt",
+        "Profile Category": "Security",
+        "Profile Name": "UBT Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "primary-controller\\s+ip\\s+\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ubt",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ubt",
+        "Profile Category": "Security",
+        "Profile Name": "UBT Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "backup-controller\\s+ip\\s+\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "ubt",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=ubt",
+        "Profile Category": "Security",
+        "Profile Name": "UBT Profile",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "access-list ip": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "policy",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=policy#/policies/createPoliciesByID",
+        "Profile Category": "Security",
+        "Profile Name": "Network Policies",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+      "(\\d+)\\s+(permit|deny)\\s+(\\w+)\\s+(\\S+)\\s+(\\S+)(?:\\s+eq\\s+(\\S+))?(?:\\s+(log|count))*": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "policy",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=policy#/policies/createPoliciesByID",
+        "Profile Category": "Security",
+        "Profile Name": "Network Policies",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ],
+                    "template": {
+                        "pattern": "",
+                        "group": 0,
+                        "replace": "{{value}}"
+                    }
+        }
+    },
+      "object-group\\s+ip\\s+address\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "object-group",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=object-group",
+        "Profile Category": "Named Objects",
+        "Profile Name": "Aliases",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "object-group\\s+port\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "object-group",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=object-group",
+        "Profile Category": "Named Objects",
+        "Profile Name": "Aliases",
+        "Configuration Method": "API/UI",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+        "mdns-sd enable": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "multicast-dns",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=multicast-dns#/multicast-dns/createMulticastDns",
+        "Profile Category": "Named Objects",
+        "Profile Name": "Aliases",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "mdns-sd\\s+service\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "multicast-dns",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=multicast-dns#/multicast-dns/createMulticastDns",
+        "Profile Category": "Named Objects",
+        "Profile Name": "Aliases",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "mdns-sd\\s+profile\\s+\\S+": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "multicast-dns",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=multicast-dns#/multicast-dns/createMulticastDns",
+        "Profile Category": "Named Objects",
+        "Profile Name": "Aliases",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+  "ta-certificate": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "certificate-store",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=certificate-store#/certificate-store/createCertificateStore",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    },
+    "crypto pki ta-profile": {
+        "Configuration": "",
+        "Sub Match Condition": "",
+        "comments": "",
+        "API Name": "certificate-rcp",
+        "API Documentation": "https://internal-ui.central.arubanetworks.com/networking/docs/?urls.primaryName=certificate-rcp",
+        "Profile Category": "",
+        "Profile Name": "",
+        "Configuration Method": "API Only",
+        "Postman API": false,
+        "Postman Call": "",
+        "parser": {
+                    "profile details": {
+                                        "{{profile_name}}": "",
+                                        "{{profile_description}}": ""
+                                        },
+                    "patterns": [
+                        {
+                            "match_con1": {
+                            "pattern": "",
+                            "group": 0,
+                            "replace": "{{value}}"
+                            }
+                        }
+                    ]
+        }
+    }
+}

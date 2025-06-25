@@ -1,0 +1,602 @@
+{
+    "profile": [
+        {
+            "flow-control-mode": "NONE",
+            "llfc-flow-control": {
+                "direction": "RX",
+                "override-negotiation": true,
+                "llfc-pool-id": 4294967295
+            },
+            "priority-flow-control": {
+                "pfc-watchdog": false,
+                "priority-config": [
+                    {
+                        "direction": "RX",
+                        "priority": 7
+                    }
+                ]
+            },
+            "buffer-based-flow-control": {
+                "pfc-priority": 7,
+                "xoff-limit-type": "NONE",
+                "xoff-limit-alpha": 3,
+                "xoff-limit-static": 20000,
+                "xon-delta": 100000,
+                "headroom": 4294967295,
+                "headroom-cable-length": 100000
+            },
+            "link-flap": {
+                "action": "NOTIFY",
+                "auto-enable": 604800,
+                "sensitivity": "LOW"
+            },
+            "excessive-broadcasts": {
+                "action": "NOTIFY",
+                "auto-enable": 604800,
+                "threshold-units": "PPS",
+                "threshold-percent": 100,
+                "threshold-rate": 195312500
+            },
+            "excessive-multicasts": {
+                "action": "NOTIFY",
+                "auto-enable": 604800,
+                "threshold-units": "PPS",
+                "threshold-percent": 100,
+                "threshold-rate": 195312500
+            },
+            "portfilter": {
+                "portfilter-name": "string",
+                "enable": false,
+                "lag-ports": [
+                    "string"
+                ],
+                "eth-ports": [
+                    "string"
+                ],
+                "action": "FORWARD"
+            },
+            "bfd": {
+                "min-rx-interval": 1000,
+                "min-tx-interval": 1000,
+                "min-echo-rx-interval": 0,
+                "detect-multiplier": 255,
+                "bfd-authentication-type": "KEYED_SHA1",
+                "key-id": 255,
+                "password": "string",
+                "disable-echo": false
+            },
+            "policy": {
+                "access-list-in": "string",
+                "access-list-out": "string",
+                "access-group-in": "string",
+                "access-group-out": "string",
+                "access-group-session": "string",
+                "access-group-vlan-in": "string",
+                "access-group-vlan-out": "string",
+                "service-policy-in": "string",
+                "service-policy-out": "string"
+            },
+            "policy-vlan-config": {
+                "policy-access-group": [
+                    {
+                        "access-group-vlan-id": 4094,
+                        "access-group-vlan-session": "string"
+                    }
+                ]
+            },
+            "switchport": {
+                "interface-mode": "ACCESS",
+                "native-vlan": 4094,
+                "tag": false,
+                "access-vlan": 4094,
+                "trunk-vlan-all": false,
+                "trunk-vlan-ranges": [
+                    "string"
+                ]
+            },
+            "vlan-translate": [
+                {
+                    "origin": 4094,
+                    "translated": 4094
+                }
+            ],
+            "ip": {
+                "mtu": 1500,
+                "l3-counters": "TX"
+            },
+            "ipv4": {
+                "address": "string",
+                "address-alias": "string",
+                "secondary-ip": [
+                    "string"
+                ],
+                "dhcp-client-id": "string",
+                "filter-broadcast-helper": false,
+                "helper-address": [
+                    "string"
+                ],
+                "proxy-arp": "GATEWAY",
+                "nat-inside": false,
+                "nat-outside": false,
+                "option-82": true,
+                "route-redistribute": false,
+                "forwarding": true,
+                "suppress-arp": true,
+                "vrf-forwarding": "string",
+                "dhcps-profile-name": "string"
+            },
+            "ipv6": {
+                "enable": false,
+                "addresses": [
+                    {
+                        "address": "string",
+                        "eui64": false,
+                        "tag": 0
+                    }
+                ],
+                "prefix-delegation-mode": "ADDRESS",
+                "pd-address": {
+                    "pd-address-name": "string",
+                    "subnet-host-id": "string"
+                },
+                "pd-client-name": "string",
+                "dhcp-pool-name": "string",
+                "filter-multicast-helper": false,
+                "helper": [
+                    {
+                        "address": "string",
+                        "source": "string"
+                    }
+                ],
+                "autoconfig": false,
+                "link-local": "string",
+                "enable-default-link-local": false,
+                "relay-option": true,
+                "dhcps-profile-name": "string"
+            },
+            "lacp": {
+                "mode": "ACTIVE",
+                "key": 65535,
+                "port-id": 65535,
+                "port-priority": 1,
+                "timeout": "LONG"
+            },
+            "mpls": false,
+            "hello-holdtime": 65535,
+            "session-holdtime": 65535,
+            "mpls-ldp": false,
+            "cdp": {
+                "enable": true,
+                "mode": "TX_ONLY"
+            },
+            "ip-directed-broadcast-enable": false,
+            "sflow": {
+                "enable": false
+            },
+            "udld": {
+                "interval": 90000,
+                "enable": true,
+                "mode": {
+                    "compatibility-mode": "ARUBA_OS",
+                    "aruba-mode": "FORWARD_VERIFY",
+                    "rfc5171-mode": "AGGRESSIVE"
+                },
+                "retries": 10,
+                "udld-vlan-id": 4094
+            },
+            "smartlink": {
+                "recv-control-vlans": [
+                    4094
+                ]
+            },
+            "qinq": {
+                "selective-qinq": [
+                    {
+                        "customer-vlans": [
+                            "string"
+                        ],
+                        "service-vlan": 4094
+                    }
+                ],
+                "qinq-port-type": "CUSTOMER_NETWORK"
+            },
+            "vsx": {
+                "shutdown-on-split": false
+            },
+            "qos": {
+                "cos": 7,
+                "dscp": 63,
+                "max-rate-units": "KBPS",
+                "egress-rate": 4294967295,
+                "burst": 1073,
+                "trust": "DEVICE_ARUBA_AP",
+                "priority": 7,
+                "minimum-bandwidth": {
+                    "bandwidth": [
+                        {
+                            "qindex": 8,
+                            "qvalue": 100,
+                            "strict": true
+                        }
+                    ]
+                },
+                "schedule-profile": "string",
+                "threshold-profile": "string",
+                "broadcast-rate-limit": {
+                    "rate-type": "KBPS",
+                    "bit-rate": 4294967295,
+                    "percentage": 100,
+                    "packet-rate": 4294967295,
+                    "traffic-flow": "IN"
+                },
+                "multicast-rate-limit": {
+                    "rate-type": "KBPS",
+                    "bit-rate": 4294967295,
+                    "percentage": 100,
+                    "packet-rate": 4294967295,
+                    "traffic-flow": "IN"
+                },
+                "unknown-unicast-rate-limit": {
+                    "rate-type": "KBPS",
+                    "bit-rate": 4294967295,
+                    "percentage": 100,
+                    "packet-rate": 4294967295,
+                    "traffic-flow": "IN"
+                },
+                "icmp-rate-limit": {
+                    "rate-type": "KBPS",
+                    "bit-rate": 4294967295,
+                    "percentage": 100,
+                    "packet-rate": 4294967295,
+                    "icmp-traffic-type": "IP_ALL",
+                    "trap-clear": false
+                },
+                "queue-rate-limit": {
+                    "queue-limit": [
+                        {
+                            "index": 8,
+                            "value": 100
+                        }
+                    ]
+                }
+            },
+            "pbt-interface": {
+                "enable": true
+            },
+            "ipv4-relay": {
+                "bootp-gateway": "string",
+                "server": [
+                    {
+                        "ip-vrf": "string"
+                    }
+                ]
+            },
+            "ipv6-relay": {
+                "ucast-server": [
+                    "string"
+                ],
+                "mcast-server": [
+                    {
+                        "server": "string",
+                        "egress-type": "ETHERNET",
+                        "egress-interface": [
+                            "string",
+                            "string",
+                            "string",
+                            "string",
+                            "string"
+                        ]
+                    }
+                ],
+                "all-mcast-egress-type": "ETHERNET",
+                "all-server-mcast": [
+                    "string",
+                    "string",
+                    "string",
+                    "string",
+                    "string"
+                ]
+            },
+            "udp-broadcast-forwarder-server": {
+                "servers": [
+                    {
+                        "port": 65535,
+                        "ip": [
+                            "string"
+                        ]
+                    }
+                ]
+            },
+            "pim-sparse": {
+                "hello-delay": 5,
+                "hello-interval": 30,
+                "override-interval": 2500,
+                "propagation-delay": 500,
+                "lan-prune-delay-disable": false,
+                "dr-priority": 1,
+                "datapath-auto-include": false,
+                "enable": false,
+                "source-address-any": false,
+                "source-address": "string",
+                "bfd-enable": false,
+                "bsr-boundary": false
+            },
+            "pim6-sparse": {
+                "hello-delay": 5,
+                "hello-interval": 30,
+                "override-interval": 2500,
+                "propagation-delay": 500,
+                "lan-prune-delay-disable": false,
+                "dr-priority": 1,
+                "datapath-auto-include": false,
+                "enable": false,
+                "source-address-any": false,
+                "source-address": "string",
+                "bfd-enable": false
+            },
+            "boundary-acl": "string",
+            "pim-dense": {
+                "hello-delay": 5,
+                "hello-interval": 30,
+                "override-interval": 2500,
+                "propagation-delay": 500,
+                "lan-prune-delay-disable": false,
+                "graft-retry-interval": 3,
+                "max-graft-retries": 3,
+                "bfd-enable": false,
+                "enable": false,
+                "source-address-any": false,
+                "source-address": "string",
+                "ttl-threshold": 255
+            },
+            "pim6-dense": {
+                "hello-delay": 5,
+                "hello-interval": 30,
+                "override-interval": 2500,
+                "propagation-delay": 500,
+                "lan-prune-delay-disable": false,
+                "graft-retry-interval": 3,
+                "max-graft-retries": 3,
+                "bfd-enable": false,
+                "enable": false,
+                "source-address-any": false,
+                "source-address": "string",
+                "ttl-threshold": 255
+            },
+            "igmp": {
+                "static-group": [
+                    "string"
+                ],
+                "static-source": "string",
+                "querier-enable": true,
+                "query-interval": 125,
+                "last-member-query-interval": 1,
+                "robustness": 2,
+                "query-max-response-time": 10,
+                "policy-in": "string",
+                "ssm-map-policy-in": "string",
+                "snooping": false,
+                "enable": false,
+                "querier-wait-time": 260,
+                "router-alert-check": false,
+                "version": 3,
+                "strict-version": false,
+                "igmp-proxy-eth": "string",
+                "igmp-proxy-pchannel": "string",
+                "igmp-proxy-vxlan": "string"
+            },
+            "mld": {
+                "static-group": [
+                    "string"
+                ],
+                "static-source": "string",
+                "querier-enable": true,
+                "query-interval": 125,
+                "last-member-query-interval": 1,
+                "robustness": 2,
+                "query-max-response-time": 10,
+                "policy-in": "string",
+                "ssm-map-policy-in": "string",
+                "snooping": false,
+                "enable": false,
+                "querier-wait-time": 260,
+                "version": 2,
+                "strict-version": false,
+                "mld-proxy-eth": "string",
+                "mld-proxy-pchannel": "string"
+            },
+            "monitor": [
+                {
+                    "traffic-type-ip-monitor-name-direction": "string"
+                }
+            ],
+            "igmp-snooping-eth": {
+                "fast-leave-vlan": [
+                    4094
+                ],
+                "forced-fast-leave-vlan": [
+                    4094
+                ],
+                "auto-vlan": [
+                    4094
+                ],
+                "blocked-vlan": [
+                    4094
+                ],
+                "forward-vlan": [
+                    4094
+                ]
+            },
+            "mld-snooping-eth": {
+                "fast-leave-vlan": [
+                    4094
+                ],
+                "forced-fast-leave-vlan": [
+                    4094
+                ],
+                "auto-vlan": [
+                    4094
+                ],
+                "blocked-vlan": [
+                    4094
+                ],
+                "forward-vlan": [
+                    4094
+                ]
+            },
+            "pim-bidir": {
+                "bidir-enable": false,
+                "hello-interval": 30,
+                "hello-delay": 5,
+                "lan-prune-delay": true,
+                "override-interval": 2500,
+                "propagation-delay": 500
+            },
+            "enable": false,
+            "routing": true,
+            "speed-duplex": "HALF_10MB",
+            "mtu": 1500,
+            "energy-efficient": false,
+            "speed-override": false,
+            "error-control": "AUTO_FEC",
+            "speed-downshift-enable": false,
+            "link-clock-narrow-tolerance": false,
+            "vrf-forwarding": "string",
+            "mac-notify-traps": [
+                "LEARNED"
+            ],
+            "trusted-vlans": [
+                "string"
+            ],
+            "dpi-enable": false,
+            "macsec-policy": "string",
+            "mka-policy": "string",
+            "pvlan-port-mode": "PROMISCUOUS",
+            "fault-monitor-profile": "string",
+            "vrrp": {
+                "virtual-router": [
+                    "string"
+                ]
+            },
+            "stp": {
+                "enable": true,
+                "bpdu-filter": true,
+                "bpdu-guard": true,
+                "loop-guard": true,
+                "pvst-filter": true,
+                "pvst-guard": true,
+                "root-guard": true,
+                "rpvst-filter": true,
+                "rpvst-guard": true,
+                "tcn-guard": true,
+                "native-vlan-ieee-bpdu": false,
+                "admin-edge-port": true,
+                "admin-edge-port-trunk": true,
+                "cost": 200000000,
+                "priority": 255,
+                "hello-time": 10,
+                "link-type": "POINT_TO_POINT",
+                "auto-edge": true,
+                "rpvst": [
+                    {
+                        "cost": 0,
+                        "priority": 8,
+                        "vlan-id": 4094
+                    }
+                ],
+                "mstp": [
+                    {
+                        "cost": 0,
+                        "priority": 8,
+                        "instance-id": 64
+                    }
+                ]
+            },
+            "loop-protect": {
+                "enable": false,
+                "action": "TX_DISABLE",
+                "vlans": [
+                    4094
+                ],
+                "transmit-interval": 5,
+                "re-enable-timer": 604800,
+                "trap": false
+            },
+            "profile-name": "string",
+            "description": "string",
+            "aaa-profile": "string",
+            "port-security-policy": "string",
+            "dhcp-snooping-profile": "string",
+            "nd-snooping-profile": "string",
+            "ip-source-lockdown-profile": "string",
+            "dynamic-arp-inspection-profile": "string",
+            "client-iptracker-profile": "string",
+            "dfp-profile": "string",
+            "poe": {
+                "enabled": true,
+                "value": 30,
+                "lldp-detect": true,
+                "allocation-method": "USAGE",
+                "priority": "LOW",
+                "assigned-class": 255,
+                "pd-class-override": false,
+                "pre-std-detect": false,
+                "power-pairs": "ALT_A_AND_B",
+                "cycle-timeout": "0"
+            },
+            "lldp": {
+                "mode": "TX_ONLY",
+                "enable-notification": true,
+                "top-change-notify": true,
+                "trap": true,
+                "med-poe-priority-override": false,
+                "dcbx-disable": false,
+                "dcbx-version": "IEEE",
+                "tlv": {
+                    "basic": {
+                        "port-descr": true,
+                        "system-name": true,
+                        "system-descr": true,
+                        "system-cap": true,
+                        "management-addr": true
+                    },
+                    "dot1": {
+                        "port-vlan-id": true,
+                        "port-vlan-name": true
+                    },
+                    "dot3tlv": {
+                        "mac-phy": true,
+                        "poe-plus": true,
+                        "eee": true,
+                        "mfs": true
+                    },
+                    "med": {
+                        "capabilities": true,
+                        "network-policy": true,
+                        "location-id": true,
+                        "poe": true
+                    },
+                    "civic-addr": {
+                        "country-code": "string",
+                        "what": 2,
+                        "ca-pair": [
+                            {
+                                "ca-type": 255,
+                                "ca-value": "string"
+                            }
+                        ]
+                    },
+                    "elin-addr": "string",
+                    "host-ipv4-address": "string",
+                    "host-ipv6-address": "string"
+                }
+            },
+            "isolated-vlans": [
+                4094
+            ],
+            "forbid-vlans": [
+                4094
+            ]
+        }
+    ]
+}

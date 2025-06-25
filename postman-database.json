@@ -1,0 +1,997 @@
+{
+    "info": {
+        "_postman_id": "ac00c489-5428-4f89-ad2b-3904f79e1d85",
+        "name": "Your Config",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "## Base URLs for API Gateway Access\nDifferent Central clusters have different base URLs. Please copy the appropriate URL for your account and replace it in the 'Variables' section of this folder: \n\n | **Cluster** | **Base URL** |\n| --- | --- |\n| Internal | internal.api.central.arubanetworks.com |\n| US-1 | us1.api.central.arubanetworks.com |\n| US-2 | us2.api.central.arubanetworks.com |\n| US-WEST-4 | us4.api.central.arubanetworks.com |\n| US-WEST-5 | us5.api.central.arubanetworks.com |\n| US-East1 | us6.api.central.arubanetworks.com |\n| Canada-1 | cn1.api.central.arubanetworks.com |\n| EU-1 | ge1.api.central.arubanetworks.com |\n| EU-Central2 | ge2.api.central.arubanetworks.com |\n| EU-Central3 | ge3.api.central.arubanetworks.com |\n| APAC-1 | in.api.central.arubanetworks.com |\n| APAC-EAST1 | jp1.api.central.arubanetworks.com |\n| APAC-SOUTH1 | au1.api.central.arubanetworks.com | \n\n ### Local Variables Definition\nIf you would like to make Configuration profiles at any New Central hierarchy level below the Library level, the following variables must be filled out. \n\n | **Name** | **Description** | **Example** |\n| --- | --- | --- |\n| scope_id | ID that refers to scope of New Central instance. Scope ID can reference a Global, Site Collection, Site, or Device level. | ID |\n| persona | Persona refers to the affected device type (provide one of the example values) | CAMPUS_AP, MOBILITY_GW, VPNC, MICROBRANCH_AP, SWITCH, BRANCH_GW |\n\n ## API Workflow\n### 1. Token Credentials\nIn order to get token credentials for New Central, follow [this guide](https://developer.arubanetworks.com/hpe-aruba-networking-central/docs/generating-a-hpe-greenlake-cloud-platform-token) on our HPE Aruba Networking Developer Hub. Fill out the client_id and the client_secret variables first to generate a Token. After generating an API token, that value can be copied and pasted into the central_token variable value. Then proceed to fill out the central_api_base_url.\n",
+        "_exporter_id": "15817954",
+        "_collection_link": "https://lunar-sunset-988508.postman.co/workspace/CNX-API~93741e92-ec2a-4d48-a585-2cb6107d5375/collection/15817954-ac00c489-5428-4f89-ad2b-3904f79e1d85?action=share&source=collection_link&creator=15817954"
+    },
+    "item": [
+        {
+            "name": "Authentication Click Me!",
+            "item": [
+                {
+                    "name": "Generate Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "if (pm.response.code == 200){",
+                                    "    console.log('Successfully obtained Access Token')",
+                                    "    const response = pm.response.json()",
+                                    "    var access_token = response['access_token']",
+                                    "    console.info('Setting Access Token(central_token) in Postman environment')",
+                                    "    pm.environment.set(\"central_token\", access_token);",
+                                    "    console.log('You are now ready & authenticated to make API calls to your new HPE Aruba Networking Central account')",
+                                    "}"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "console.log('Generating Access Token...')",
+                                    "var required_variables = [\"client_id\", \"client_secret\"]",
+                                    "",
+                                    "required_variables.forEach(variable => {",
+                                    "    if (!pm.environment.get(variable)) {",
+                                    "        console.error('Missing required variable ' + variable + ' in Postman environment variables. Please add required variables before running the collection')",
+                                    "        pm.execution.skipRequest()",
+                                    "    }",
+                                    "})"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "grant_type",
+                                    "value": "client_credentials",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "client_id",
+                                    "value": "{{client_id}}",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "client_secret",
+                                    "value": "{{client_secret}}",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "https://sso.common.cloud.hpe.com/as/token.oauth2",
+                            "protocol": "https",
+                            "host": [
+                                "sso",
+                                "common",
+                                "cloud",
+                                "hpe",
+                                "com"
+                            ],
+                            "path": [
+                                "as",
+                                "token.oauth2"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "To avoid swapping between Greenlake and postman to generate new tokens every two hours we have made it simple to automatically update your credentials. \n\n First Ensure you have imported the 'Greenlake Creds.postman_environment.json' file to postman. Get your client_id and client_secret from greenlake. Then place those values as variables in the newly imported environment it will appear as 'Greenlake Enviroment' in the postman UI. \n\n Once that is complete the next step is to generate a access token using your client_id and client_secret. To generate this token use the 'Generate Access Token' call to automatically create your API token. \n\n After you run this call it will automatically update your token in the 'Greenlake Environment' in postman. \n\n You are now ready to use the rest of the collection!!!. \n\n **Note** This key will expire after two hours to generate a new token simply run the 'Generate Access Token' call again. \n"
+        },
+        {
+            "name": "Profile Management",
+            "item": [
+                {
+                    "name": "Get Sites",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/sites",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "sites"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Site Collections",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/site-collections",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "site-collections"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "TEST DESCRIPTION"
+        },
+        {
+            "name": "ntp",
+            "item": [
+                {
+                    "name": "Create NTP Server",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"profile\": [\n        {\n            \"authenticate\": {{authenticate}},\n            \"authentication-profile\": [\n                {\n                    \"key-identifier\": {{key_identifier}},\n                    \"key-hash\": \"{{key_hash}}\",\n                    \"key-value\": \"{{key_value}}\",\n                    \"key-trusted\": {{key_trusted}},\n                    \"ciphertext\": {\n                        \"key-value\": \"{{ciphertext_key_value}}\"\n                    }\n                }\n            ],\n            \"trusted-key\": [{{trusted_key}}],\n            \"conductor\": [\n                {\n                    \"vrf\": \"{{vrf}}\",\n                    \"stratum\": {{stratum}}\n                }\n            ],\n            \"debug\": {{debug}},\n            \"dhcp-disable\": {{dhcp_disable}},\n            \"source-interface\": \"{{source_interface}}\",\n            \"source-vlan\": {{source_vlan}},\n            \"time-serve\": [{{time_serve}}],\n            \"traps\": [\"{{traps}}\"],\n            \"servers\": [\n                {\n                    \"address\": \"{{ntp_server}}\",\n                    \"tx-mode\": \"{{tx_mode}}\",\n                    \"burst\": \"{{burst}}\",\n                    \"iburst\": \"{{iburst}}\",\n                    \"key-identifier\": {{server_key_identifier}},\n                    \"max-poll\": {{max_poll}},\n                    \"min-poll\": {{min_poll}},\n                    \"mgmt-interface\": {{mgmt_interface}},\n                    \"prefer\": {{prefer}},\n                    \"version\": {{ntp_version}}\n                }\n            ],\n            \"max-association\": {{max_association}},\n            \"operation-mode\": \"{{operation_mode}}\",\n            \"server-mode-disable\": {{server_mode_disable}},\n            \"name\": \"{{profile_name}}\",\n            \"description\": \"{{profile_description}}\",\n            \"vrf\": \"{{vrf}}\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/ntp",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "ntp"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "switch-system",
+            "item": [
+                {
+                    "name": "Create Switch System Profile",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"profile\": [\n        {\n            \"name\": \"{{profile_name}}\",\n            \"description\": \"{{profile_description}}\",\n            \"timezone\": {\n                \"daylight-time-rule\": \"{{daylight_time_rule}}\",\n                \"begin-date\": \"{{begin_date}}\",\n                \"end-date\": \"{{end_date}}\",\n                \"timezone-name\": \"{{timezone_name}}\",\n                \"hour-offset\": {{hour_offset}},\n                \"minute-offset\": {{minute_offset}}\n            },\n            \"virtual-mac\": \"{{virtual_mac}}\",\n            \"disable-factory-reset\": {{disable_factory_reset}},\n            \"usb-port-disable\": {{usb_port_disable}},\n            \"internal-vlan-range\": \"{{internal_vlan_range}}\",\n            \"mac-age-time\": {{mac_age_time}},\n            \"mac-address-delimiter\": \"{{mac_address_delimiter}}\",\n            \"enable-unsupported-transceiver\": {{enable_unsupported_transceiver}},\n            \"unsupported-transceiver-logging-interval\": {{unsupported_transceiver_logging_interval}},\n            \"unsupported-transceiver-logging\": {{unsupported_transceiver_logging}},\n            \"max-vlan\": {{max_vlan}},\n            \"management-vlan-id\": {{management_vlan_id}},\n            \"primary-vlan\": {{primary_vlan}},\n            \"ip-routing\": {{ip_routing}},\n            \"ipv6-unicast-routing\": {{ipv6_unicast_routing}},\n            \"access-list\": {\n                \"log-enable\": {{access_list_log_enable}},\n                \"log-timer\": {{access_list_log_timer}},\n                \"secure-update\": {{access_list_secure_update}},\n                \"deny-fragmented-tcp-header\": {{access_list_deny_fragmented_tcp_header}},\n                \"deny-non-classifiable-layer4-header\": {{access_list_deny_non_classifiable_layer4_header}}\n            },\n            \"loop-protect\": {\n                \"transmit-interval\": {{loop_protect_transmit_interval}},\n                \"re-enable-timer\": {{loop_protect_re_enable_timer}},\n                \"trap\": {{loop_protect_trap}},\n                \"mode\": \"{{loop_protect_mode}}\",\n                \"vlans\": [{{loop_protect_vlans}}]\n            },\n            \"fault-monitor\": {\n                \"excessive-oversize-packets\": {\n                    \"sensitivity\": \"{{fault_monitor_excessive_oversize_packets_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_excessive_oversize_packets_action}}\"\n                },\n                \"excessive-crc-errors\": {\n                    \"sensitivity\": \"{{fault_monitor_excessive_crc_errors_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_excessive_crc_errors_action}}\"\n                },\n                \"excessive-late-collisions\": {\n                    \"sensitivity\": \"{{fault_monitor_excessive_late_collisions_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_excessive_late_collisions_action}}\"\n                },\n                \"excessive-broadcasts\": {\n                    \"sensitivity\": \"{{fault_monitor_excessive_broadcasts_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_excessive_broadcasts_action}}\"\n                },\n                \"excessive-multicasts\": {\n                    \"sensitivity\": \"{{fault_monitor_excessive_multicasts_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_excessive_multicasts_action}}\"\n                },\n                \"link-flap\": {\n                    \"sensitivity\": \"{{fault_monitor_link_flap_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_link_flap_action}}\"\n                },\n                \"bad-transceiver\": {\n                    \"sensitivity\": \"{{fault_monitor_bad_transceiver_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_bad_transceiver_action}}\"\n                },\n                \"over-bandwidth\": {\n                    \"sensitivity\": \"{{fault_monitor_over_bandwidth_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_over_bandwidth_action}}\"\n                },\n                \"link-loss\": {\n                    \"sensitivity\": \"{{fault_monitor_link_loss_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_link_loss_action}}\"\n                },\n                \"half-duplex-mismatch\": {\n                    \"sensitivity\": \"{{fault_monitor_half_duplex_mismatch_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_half_duplex_mismatch_action}}\"\n                },\n                \"full-duplex-mismatch\": {\n                    \"sensitivity\": \"{{fault_monitor_full_duplex_mismatch_sensitivity}}\",\n                    \"action\": \"{{fault_monitor_full_duplex_mismatch_action}}\"\n                }\n            },\n            \"aaa\": {\n                \"client-move\": \"{{aaa_client_move}}\",\n                \"auto-vlan-enable\": {{aaa_auto_vlan_enable}},\n                \"client-event-log-enable\": {{aaa_client_event_log_enable}},\n                \"cached-critical-role\": {\n                    \"enable\": {{aaa_cached_critical_role_enable}},\n                    \"cache-replace-mode\": \"{{aaa_cached_critical_role_cache_replace_mode}}\",\n                    \"cache-timeout\": {{aaa_cached_critical_role_cache_timeout}},\n                    \"persistent-storage-enable\": {{aaa_cached_critical_role_persistent_storage_enable}},\n                    \"persistent-storage-write-interval\": {{aaa_cached_critical_role_persistent_storage_write_interval}}\n                },\n                \"use-lldp-data\": {{aaa_use_lldp_data}},\n                \"allow-vlan-tagged\": {{aaa_allow_vlan_tagged}},\n                \"accounting\": {\n                    \"accounting-mode\": \"{{aaa_accounting_mode}}\",\n                    \"local-accounting\": {{aaa_local_accounting}},\n                    \"interim-update-enable\": {{aaa_interim_update_enable}},\n                    \"interim-update-interval\": {{aaa_interim_update_interval}},\n                    \"interim-update-onreauth-enable\": {{aaa_interim_update_onreauth_enable}},\n                    \"acct-server-group\": \"{{aaa_acct_server_group}}\"\n                },\n                \"cppm-user-name\": \"{{aaa_cppm_user_name}}\",\n                \"cppm-password\": \"{{aaa_cppm_password}}\",\n                \"dot1x-auth\": {\n                    \"enable\": {{aaa_dot1x_auth_enable}},\n                    \"eap-tls-fragment-size-towards-server\": {{aaa_dot1x_auth_eap_tls_fragment_size_towards_server}},\n                    \"radius-auth-method\": \"{{aaa_dot1x_auth_radius_auth_method}}\",\n                    \"secondary-auth-method\": \"{{aaa_dot1x_auth_secondary_auth_method}}\",\n                    \"cached-reauth-authorized\": {{aaa_dot1x_auth_cached_reauth_authorized}},\n                    \"radius-server-group\": \"{{aaa_dot1x_auth_radius_server_group}}\",\n                    \"cached-reauth-delay\": {{aaa_dot1x_auth_cached_reauth_delay}}\n                },\n                \"dot1x-supp\": {\n                    \"enable\": {{aaa_dot1x_supp_enable}},\n                    \"eap-tls-cert-type\": \"{{aaa_dot1x_supp_eap_tls_cert_type}}\",\n                    \"eap-tls-cert\": \"{{aaa_dot1x_supp_eap_tls_cert}}\"\n                },\n                \"mac-auth\": {\n                    \"enable\": {{aaa_mac_auth_enable}},\n                    \"address-format\": \"{{aaa_mac_auth_address_format}}\",\n                    \"macauth-password\": \"{{aaa_mac_auth_macauth_password}}\",\n                    \"radius-auth-method\": \"{{aaa_mac_auth_radius_auth_method}}\",\n                    \"secondary-auth-method\": \"{{aaa_mac_auth_secondary_auth_method}}\",\n                    \"cached-reauth-authorized\": {{aaa_mac_auth_cached_reauth_authorized}},\n                    \"radius-server-group\": \"{{aaa_mac_auth_radius_server_group}}\"\n                },\n                \"localmac-auth\": {\n                    \"lma-profiles\": {\n                        \"lma-profile\": [\n                            {\n                                \"lma-name\": \"{{aaa_localmac_auth_lma_profiles_lma_profile_lma_name}}\",\n                                \"cos\": {{aaa_localmac_auth_lma_profiles_lma_profile_cos}},\n                                \"tagged-vlan-id\": [{{aaa_localmac_auth_lma_profiles_lma_profile_tagged_vlan_id}}],\n                                \"untagged-vlan-id\": {{aaa_localmac_auth_lma_profiles_lma_profile_untagged_vlan_id}}\n                            }\n                        ]\n                    },\n                    \"default-mac-groups\": {\n                        \"default-mac-group\": [\n                            {\n                                \"default-group-name\": \"{{aaa_localmac_auth_default_mac_groups_default_mac_group_default_group_name}}\",\n                                \"default\": \"{{aaa_localmac_auth_default_mac_groups_default_mac_group_default}}\"\n                            }\n                        ]\n                    },\n                    \"mac-groups\": {\n                        \"mac-group\": [\n                            {\n                                \"mac-group-name\": \"{{aaa_localmac_auth_mac_groups_mac_group_mac_group_name}}\",\n                                \"mac-address\": [\"{{aaa_localmac_auth_mac_groups_mac_group_mac_address}}\"],\n                                \"mac-oui\": [\"{{aaa_localmac_auth_mac_groups_mac_group_mac_oui}}\"],\n                                \"mac-mask\": [\"{{aaa_localmac_auth_mac_groups_mac_group_mac_mask}}\"]\n                            }\n                        ]\n                    },\n                    \"lma-apply-profile\": {\n                        \"apply-profile\": [\n                            {\n                                \"apply-profile-name\": \"{{aaa_localmac_auth_lma_apply_profile_apply_profile_name}}\",\n                                \"apply-mac-address\": [\"{{aaa_localmac_auth_lma_apply_profile_apply_mac_address}}\"],\n                                \"apply-mac-oui\": [\"{{aaa_localmac_auth_lma_apply_profile_apply_mac_oui}}\"],\n                                \"apply-mac-mask\": [\"{{aaa_localmac_auth_lma_apply_profile_apply_mac_mask}}\"],\n                                \"apply-mac-group\": [\"{{aaa_localmac_auth_lma_apply_profile_apply_mac_group}}\"]\n                            }\n                        ]\n                    },\n                    \"lma-apply-user-role\": {\n                        \"apply-user-role\": [\n                            {\n                                \"user-role-name\": \"{{aaa_localmac_auth_lma_apply_user_role_user_role_name}}\",\n                                \"mac-address\": [\"{{aaa_localmac_auth_lma_apply_user_role_mac_address}}\"],\n                                \"mac-oui\": [\"{{aaa_localmac_auth_lma_apply_user_role_mac_oui}}\"],\n                                \"mac-mask\": [\"{{aaa_localmac_auth_lma_apply_user_role_mac_mask}}\"],\n                                \"mac-group\": [\"{{aaa_localmac_auth_lma_apply_user_role_mac_group}}\"]\n                            }\n                        ]\n                    }\n                },\n                \"user-role\": {\n                    \"enable\": {{aaa_user_role_enable}},\n                    \"download\": {{aaa_user_role_download}}\n                }\n            },\n            \"macsec\": {\n                \"selftest-enable\": {{macsec_selftest_enable}}\n            },\n            \"port-security\": {\n                \"enable\": {{port_security_enable}},\n                \"traps-enable\": {{port_security_traps_enable}}\n            },\n            \"fastboot\": {{fastboot}},\n            \"captive-portal-enable\": {{captive_portal_enable}},\n            \"policy-in\": \"{{policy_in}}\",\n            \"private-vlan\": {\n                \"hw-resource-share-enable\": {{private_vlan_hw_resource_share_enable}}\n            },\n            \"qinq\": {\n                \"ethertype\": \"{{qinq_ethertype}}\",\n                \"vlan-mode\": \"{{qinq_vlan_mode}}\",\n                \"tag-type\": \"{{qinq_tag_type}}\"\n            },\n            \"dfp-cppm-timer\": {{dfp_cppm_timer}}\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/switch-system",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "switch-system"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "auth-servers",
+            "item": [
+                {
+                    "name": "Create Auth Server",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"auth-server\": [\n        {\n            \"called-station-id\": {\n                \"type\": \"{{called_station_id_type}}\",\n                \"mac-address-delimiter\": \"{{mac_address_delimiter}}\",\n                \"upper-case\": {{upper_case}},\n                \"include-ssid\": {{include_ssid}},\n                \"include-ssid-delimiter\": \"{{include_ssid_delimiter}}\"\n            },\n            \"name\": \"{{profile_name}}\",\n            \"description\": \"{{profile_description}}\",\n            \"type\": \"{{server_type}}\",\n            \"auth-server-address\": \"{{auth_server_address}}\",\n            \"xmlapi-server-address\": \"{{xmlapi_server_address}}\",\n            \"enable\": {{enable}},\n            \"enable-radsec\": {{enable_radsec}},\n            \"authentication-type\": \"{{authentication_type}}\",\n            \"auth-port\": {{auth_port}},\n            \"acct-port\": {{acct_port}},\n            \"tcp-port\": {{tcp_port}},\n            \"max-retransmit-attempts\": {{max_retransmit_attempts}},\n            \"timeout\": {{timeout}},\n            \"source-address\": \"{{source_address}}\",\n            \"source-interface\": {{source_interface}},\n            \"nas-ip-address\": \"{{nas_ip_address}}\",\n            \"nas-identifier\": \"{{nas_identifier}}\",\n            \"cppm-user-name\": \"{{cppm_user_name}}\",\n            \"service-type\": \"{{service_type}}\",\n            \"use-ip-for-calling-station-id\": {{use_ip_for_calling_station_id}},\n            \"use-md5\": {{use_md5}},\n            \"lower-case-mac-address\": {{lower_case_mac_address}},\n            \"mac-address-delimiter\": \"{{mac_address_delimiter}}\",\n            \"vrf\": \"{{vrf}}\",\n            \"management-interface\": {{management_interface}},\n            \"clearpass\": {{clearpass}},\n            \"dynamic-authorization-enable\": {{dynamic_authorization_enable}},\n            \"radsec-port\": {{radsec_port}},\n            \"radsec-client-cert\": \"{{radsec_client_cert}}\",\n            \"radsec-trusted-cacert-name\": \"{{radsec_trusted_cacert_name}}\",\n            \"radsec-trusted-servercert-name\": \"{{radsec_trusted_servercert_name}}\",\n            \"radsec-est-cert-profile\": \"{{radsec_est_cert_profile}}\",\n            \"admin-dn\": \"{{admin_dn}}\",\n            \"admin-password\": \"{{admin_password}}\",\n            \"base-dn\": \"{{base_dn}}\",\n            \"allow-cleartext\": {{allow_cleartext}},\n            \"chase-referrals\": {{chase_referrals}},\n            \"filter\": \"{{filter}}\",\n            \"key-attribute\": \"{{key_attribute}}\",\n            \"max-connection\": {{max_connection}},\n            \"session-authorization\": {{session_authorization}},\n            \"domain\": \"{{domain}}\",\n            \"replay-protection\": {{replay_protection}},\n            \"window-duration\": {{window_duration}},\n            \"window-type\": \"{{window_type}}\",\n            \"event-timestamp-required\": {{event_timestamp_required}},\n            \"rfc5176-enforcement-mode\": \"{{rfc5176_enforcement_mode}}\",\n            \"default-authenticated-role\": \"{{default_authenticated_role}}\",\n            \"preferred-conn-type\": \"{{preferred_conn_type}}\",\n            \"auth-modifier\": \"{{auth_modifier}}\",\n            \"acct-modifier\": \"{{acct_modifier}}\",\n            \"deadtime\": {{deadtime}},\n            \"auth-throttle\": {{auth_throttle}},\n            \"dynamic-authorization-port\": {{dynamic_authorization_port}},\n            \"radsec-keepalive\": \"{{radsec_keepalive}}\",\n            \"rfc5997\": \"{{rfc5997}}\",\n            \"msg-auth-required\": {{msg_auth_required}},\n            \"tracking-enable\": {{tracking_enable}},\n            \"tracking-mode\": \"{{tracking_mode}}\",\n            \"tracking-method\": \"{{tracking_method}}\",\n            \"dns-query-mode\": \"{{dns_query_mode}}\",\n            \"dns-query-interval\": {{dns_query_interval}},\n            \"tls-initial-connection-timeout\": {{tls_initial_connection_timeout}},\n            \"port-access-keepalive\": \"{{port_access_keepalive}}\",\n            \"shared-secret-config\": {\n                \"secret-type\": \"{{shared_secret_config_secret_type}}\",\n                \"ciphertext-value\": \"{{shared_secret_config_ciphertext_value}}\",\n                \"plaintext-value\": \"{{shared_secret_config_plaintext_value}}\"\n            },\n            \"cppm-password-config\": {\n                \"password-type\": \"{{cppm_password_config_password_type}}\",\n                \"ciphertext-value\": \"{{cppm_password_config_ciphertext_value}}\",\n                \"plaintext-value\": \"{{cppm_password_config_plaintext_value}}\"\n            },\n            \"ipsec-ah\": {\n                \"spi\": {{ipsec_ah_spi}},\n                \"authentication-type\": \"{{ipsec_ah_authentication_type}}\",\n                \"authentication-key-type\": \"{{ipsec_ah_authentication_key_type}}\",\n                \"authentication-key-hexstring\": \"{{ipsec_ah_authentication_key_hexstring}}\",\n                \"authentication-key-cipher-text\": \"{{ipsec_ah_authentication_key_cipher_text}}\",\n                \"authentication-key\": \"{{ipsec_ah_authentication_key}}\"\n            },\n            \"ipsec-esp\": {\n                \"spi\": {{ipsec_esp_spi}},\n                \"authentication-type\": \"{{ipsec_esp_authentication_type}}\",\n                \"authentication-key-type\": \"{{ipsec_esp_authentication_key_type}}\",\n                \"authentication-key-hexstring\": \"{{ipsec_esp_authentication_key_hexstring}}\",\n                \"authentication-key-cipher-text\": \"{{ipsec_esp_authentication_key_cipher_text}}\",\n                \"authentication-key\": \"{{ipsec_esp_authentication_key}}\",\n                \"encryption-type\": \"{{ipsec_esp_encryption_type}}\",\n                \"encryption-key-type\": \"{{ipsec_esp_encryption_key_type}}\",\n                \"encryption-key-hexstring\": \"{{ipsec_esp_encryption_key_hexstring}}\",\n                \"encryption-key-cipher-text\": \"{{ipsec_esp_encryption_key_cipher_text}}\",\n                \"encryption-key\": \"{{ipsec_esp_encryption_key}}\",\n                \"null-encryption\": {{ipsec_esp_null_encryption}}\n            },\n            \"drp\": {\n                \"ip\": \"{{drp_ip}}\",\n                \"vlan\": {{drp_vlan}},\n                \"gateway\": \"{{drp_gateway}}\"\n            }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/auth-server",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "auth-servers"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "sw-port-profile",
+            "item": [
+                {
+                    "name": "Create Port Profile",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"profile\": [\n        {\n            \"flow-control-mode\": \"{{flow-control-mode}}\",\n            \"llfc-flow-control\": {\n                \"direction\": \"{{direction}}\",\n                \"override-negotiation\": {{override-negotiation}},\n                \"llfc-pool-id\": {{llfc-pool-id}}\n            },\n            \"priority-flow-control\": {\n                \"pfc-watchdog\": {{pfc-watchdog}},\n                \"priority-config\": [\n                    {\n                        \"direction\": \"{{direction}}\",\n                        \"priority\": {{priority}}\n                    }\n                ]\n            },\n            \"buffer-based-flow-control\": {\n                \"pfc-priority\": {{pfc-priority}},\n                \"xoff-limit-type\": \"{{xoff-limit-type}}\",\n                \"xoff-limit-alpha\": {{xoff-limit-alpha}},\n                \"xoff-limit-static\": {{xoff-limit-static}},\n                \"xon-delta\": {{xon-delta}},\n                \"headroom\": {{headroom}},\n                \"headroom-cable-length\": {{headroom-cable-length}}\n            },\n            \"link-flap\": {\n                \"action\": \"{{action}}\",\n                \"auto-enable\": {{auto-enable}},\n                \"sensitivity\": \"{{sensitivity}}\"\n            },\n            \"excessive-broadcasts\": {\n                \"action\": \"{{action}}\",\n                \"auto-enable\": {{auto-enable}},\n                \"threshold-units\": \"{{threshold-units}}\",\n                \"threshold-percent\": {{threshold-percent}},\n                \"threshold-rate\": {{threshold-rate}}\n            },\n            \"excessive-multicasts\": {\n                \"action\": \"{{action}}\",\n                \"auto-enable\": {{auto-enable}},\n                \"threshold-units\": \"{{threshold-units}}\",\n                \"threshold-percent\": {{threshold-percent}},\n                \"threshold-rate\": {{threshold-rate}}\n            },\n            \"portfilter\": {\n                \"portfilter-name\": \"{{portfilter-name}}\",\n                \"enable\": {{enable}},\n                \"lag-ports\": [\n                    \"{{lag-ports}}\"\n                ],\n                \"eth-ports\": [\n                    \"{{eth-ports}}\"\n                ],\n                \"action\": \"{{action}}\"\n            },\n            \"bfd\": {\n                \"min-rx-interval\": {{min-rx-interval}},\n                \"min-tx-interval\": {{min-tx-interval}},\n                \"min-echo-rx-interval\": {{min-echo-rx-interval}},\n                \"detect-multiplier\": {{detect-multiplier}},\n                \"bfd-authentication-type\": \"{{bfd-authentication-type}}\",\n                \"key-id\": {{key-id}},\n                \"password\": \"{{password}}\",\n                \"disable-echo\": {{disable-echo}}\n            },\n            \"policy\": {\n                \"access-list-in\": \"{{access-list-in}}\",\n                \"access-list-out\": \"{{access-list-out}}\",\n                \"access-group-in\": \"{{access-group-in}}\",\n                \"access-group-out\": \"{{access-group-out}}\",\n                \"access-group-session\": \"{{access-group-session}}\",\n                \"access-group-vlan-in\": \"{{access-group-vlan-in}}\",\n                \"access-group-vlan-out\": \"{{access-group-vlan-out}}\",\n                \"service-policy-in\": \"{{service-policy-in}}\",\n                \"service-policy-out\": \"{{service-policy-out}}\"\n            },\n            \"policy-vlan-config\": {\n                \"policy-access-group\": [\n                    {\n                        \"access-group-vlan-id\": {{access-group-vlan-id}},\n                        \"access-group-vlan-session\": \"{{access-group-vlan-session}}\"\n                    }\n                ]\n            },\n            \"switchport\": {\n                \"interface-mode\": \"{{interface-mode}}\",\n                \"native-vlan\": {{native-vlan}},\n                \"tag\": {{tag}},\n                \"access-vlan\": {{access_vlan}},\n                \"trunk-vlan-all\": {{trunk-vlan-all}},\n                \"trunk-vlan-ranges\": [\n                    \"{{trunked_vlans}}\"\n                ]\n            },\n            \"vlan-translate\": [\n                {\n                    \"origin\": {{origin}},\n                    \"translated\": {{translated}}\n                }\n            ],\n            \"ip\": {\n                \"mtu\": {{mtu}},\n                \"l3-counters\": \"{{l3-counters}}\"\n            },\n            \"ipv4\": {\n                \"address\": \"{{address}}\",\n                \"address-alias\": \"{{address-alias}}\",\n                \"secondary-ip\": [\n                    \"{{secondary-ip}}\"\n                ],\n                \"dhcp-client-id\": \"{{dhcp-client-id}}\",\n                \"filter-broadcast-helper\": {{filter-broadcast-helper}},\n                \"helper-address\": [\n                    \"{{helper-address}}\"\n                ],\n                \"proxy-arp\": \"{{proxy-arp}}\",\n                \"nat-inside\": {{nat-inside}},\n                \"nat-outside\": {{nat-outside}},\n                \"option-82\": {{option-82}},\n                \"route-redistribute\": {{route-redistribute}},\n                \"forwarding\": {{forwarding}},\n                \"suppress-arp\": {{suppress-arp}},\n                \"vrf-forwarding\": \"{{vrf-forwarding}}\",\n                \"dhcps-profile-name\": \"{{dhcps-profile-name}}\"\n            },\n            \"ipv6\": {\n                \"enable\": {{enable}},\n                \"addresses\": [\n                    {\n                        \"address\": \"{{address}}\",\n                        \"eui64\": {{eui64}},\n                        \"tag\": {{tag}}\n                    }\n                ],\n                \"prefix-delegation-mode\": \"{{prefix-delegation-mode}}\",\n                \"pd-address\": {\n                    \"pd-address-name\": \"{{pd-address-name}}\",\n                    \"subnet-host-id\": \"{{subnet-host-id}}\"\n                },\n                \"pd-client-name\": \"{{pd-client-name}}\",\n                \"dhcp-pool-name\": \"{{dhcp-pool-name}}\",\n                \"filter-multicast-helper\": {{filter-multicast-helper}},\n                \"helper\": [\n                    {\n                        \"address\": \"{{address}}\",\n                        \"source\": \"{{source}}\"\n                    }\n                ],\n                \"autoconfig\": {{autoconfig}},\n                \"link-local\": \"{{link-local}}\",\n                \"enable-default-link-local\": {{enable-default-link-local}},\n                \"relay-option\": {{relay-option}},\n                \"dhcps-profile-name\": \"{{dhcps-profile-name}}\"\n            },\n            \"lacp\": {\n                \"mode\": \"{{mode}}\",\n                \"key\": {{key}},\n                \"port-id\": {{port-id}},\n                \"port-priority\": {{port-priority}},\n                \"timeout\": \"{{timeout}}\"\n            },\n            \"mpls\": {{mpls}},\n            \"hello-holdtime\": {{hello-holdtime}},\n            \"session-holdtime\": {{session-holdtime}},\n            \"mpls-ldp\": {{mpls-ldp}},\n            \"cdp\": {\n                \"enable\": {{enable}},\n                \"mode\": \"{{mode}}\"\n            },\n            \"ip-directed-broadcast-enable\": {{ip-directed-broadcast-enable}},\n            \"sflow\": {\n                \"enable\": {{enable}}\n            },\n            \"udld\": {\n                \"interval\": {{interval}},\n                \"enable\": {{enable}},\n                \"mode\": {\n                    \"compatibility-mode\": \"{{compatibility-mode}}\",\n                    \"aruba-mode\": \"{{aruba-mode}}\",\n                    \"rfc5171-mode\": \"{{rfc5171-mode}}\"\n                },\n                \"retries\": {{retries}},\n                \"udld-vlan-id\": {{udld-vlan-id}}\n            },\n            \"smartlink\": {\n                \"recv-control-vlans\": [\n                    {{recv-control-vlans}}\n                ]\n            },\n            \"qinq\": {\n                \"selective-qinq\": [\n                    {\n                        \"customer-vlans\": [\n                            \"{{customer-vlans}}\"\n                        ],\n                        \"service-vlan\": {{service-vlan}}\n                    }\n                ],\n                \"qinq-port-type\": \"{{qinq-port-type}}\"\n            },\n            \"vsx\": {\n                \"shutdown-on-split\": {{shutdown-on-split}}\n            },\n            \"qos\": {\n                \"cos\": {{cos}},\n                \"dscp\": {{dscp}},\n                \"max-rate-units\": \"{{max-rate-units}}\",\n                \"egress-rate\": {{egress-rate}},\n                \"burst\": {{burst}},\n                \"trust\": \"{{trust}}\",\n                \"priority\": {{priority}},\n                \"minimum-bandwidth\": {\n                    \"bandwidth\": [\n                        {\n                            \"qindex\": {{qindex}},\n                            \"qvalue\": {{qvalue}},\n                            \"strict\": {{strict}}\n                        }\n                    ]\n                },\n                \"schedule-profile\": \"{{schedule-profile}}\",\n                \"threshold-profile\": \"{{threshold-profile}}\",\n                \"broadcast-rate-limit\": {\n                    \"rate-type\": \"{{rate-type}}\",\n                    \"bit-rate\": {{bit-rate}},\n                    \"percentage\": {{percentage}},\n                    \"packet-rate\": {{packet-rate}},\n                    \"traffic-flow\": \"{{traffic-flow}}\"\n                },\n                \"multicast-rate-limit\": {\n                    \"rate-type\": \"{{rate-type}}\",\n                    \"bit-rate\": {{bit-rate}},\n                    \"percentage\": {{percentage}},\n                    \"packet-rate\": {{packet-rate}},\n                    \"traffic-flow\": \"{{traffic-flow}}\"\n                },\n                \"unknown-unicast-rate-limit\": {\n                    \"rate-type\": \"{{rate-type}}\",\n                    \"bit-rate\": {{bit-rate}},\n                    \"percentage\": {{percentage}},\n                    \"packet-rate\": {{packet-rate}},\n                    \"traffic-flow\": \"{{traffic-flow}}\"\n                },\n                \"icmp-rate-limit\": {\n                    \"rate-type\": \"{{rate-type}}\",\n                    \"bit-rate\": {{bit-rate}},\n                    \"percentage\": {{percentage}},\n                    \"packet-rate\": {{packet-rate}},\n                    \"icmp-traffic-type\": \"{{icmp-traffic-type}}\",\n                    \"trap-clear\": {{trap-clear}}\n                },\n                \"queue-rate-limit\": {\n                    \"queue-limit\": [\n                        {\n                            \"index\": {{index}},\n                            \"value\": {{value}}\n                        }\n                    ]\n                }\n            },\n            \"pbt-interface\": {\n                \"enable\": {{enable}}\n            },\n            \"ipv4-relay\": {\n                \"bootp-gateway\": \"{{bootp-gateway}}\",\n                \"server\": [\n                    {\n                        \"ip-vrf\": \"{{ip-vrf}}\"\n                    }\n                ]\n            },\n            \"ipv6-relay\": {\n                \"ucast-server\": [\n                    \"{{ucast-server}}\"\n                ],\n                \"mcast-server\": [\n                    {\n                        \"server\": \"{{server}}\",\n                        \"egress-type\": \"{{egress-type}}\",\n                        \"egress-interface\": [\n                            \"{{egress-interface}}\",\n                            \"{{egress-interface}}\",\n                            \"{{egress-interface}}\",\n                            \"{{egress-interface}}\",\n                            \"{{egress-interface}}\"\n                        ]\n                    }\n                ],\n                \"all-mcast-egress-type\": \"{{all-mcast-egress-type}}\",\n                \"all-server-mcast\": [\n                    \"{{all-server-mcast}}\",\n                    \"{{all-server-mcast}}\",\n                    \"{{all-server-mcast}}\",\n                    \"{{all-server-mcast}}\",\n                    \"{{all-server-mcast}}\"\n                ]\n            },\n            \"udp-broadcast-forwarder-server\": {\n                \"servers\": [\n                    {\n                        \"port\": {{port}},\n                        \"ip\": [\n                            \"{{ip}}\"\n                        ]\n                    }\n                ]\n            },\n            \"pim-sparse\": {\n                \"hello-delay\": {{hello-delay}},\n                \"hello-interval\": {{hello-interval}},\n                \"override-interval\": {{override-interval}},\n                \"propagation-delay\": {{propagation-delay}},\n                \"lan-prune-delay-disable\": {{lan-prune-delay-disable}},\n                \"dr-priority\": {{dr-priority}},\n                \"datapath-auto-include\": {{datapath-auto-include}},\n                \"enable\": {{enable}},\n                \"source-address-any\": {{source-address-any}},\n                \"source-address\": \"{{source-address}}\",\n                \"bfd-enable\": {{bfd-enable}},\n                \"bsr-boundary\": {{bsr-boundary}}\n            },\n            \"pim6-sparse\": {\n                \"hello-delay\": {{hello-delay}},\n                \"hello-interval\": {{hello-interval}},\n                \"override-interval\": {{override-interval}},\n                \"propagation-delay\": {{propagation-delay}},\n                \"lan-prune-delay-disable\": {{lan-prune-delay-disable}},\n                \"dr-priority\": {{dr-priority}},\n                \"datapath-auto-include\": {{datapath-auto-include}},\n                \"enable\": {{enable}},\n                \"source-address-any\": {{source-address-any}},\n                \"source-address\": \"{{source-address}}\",\n                \"bfd-enable\": {{bfd-enable}}\n            },\n            \"boundary-acl\": \"{{boundary-acl}}\",\n            \"pim-dense\": {\n                \"hello-delay\": {{hello-delay}},\n                \"hello-interval\": {{hello-interval}},\n                \"override-interval\": {{override-interval}},\n                \"propagation-delay\": {{propagation-delay}},\n                \"lan-prune-delay-disable\": {{lan-prune-delay-disable}},\n                \"graft-retry-interval\": {{graft-retry-interval}},\n                \"max-graft-retries\": {{max-graft-retries}},\n                \"bfd-enable\": {{bfd-enable}},\n                \"enable\": {{enable}},\n                \"source-address-any\": {{source-address-any}},\n                \"source-address\": \"{{source-address}}\",\n                \"ttl-threshold\": {{ttl-threshold}}\n            },\n            \"pim6-dense\": {\n                \"hello-delay\": {{hello-delay}},\n                \"hello-interval\": {{hello-interval}},\n                \"override-interval\": {{override-interval}},\n                \"propagation-delay\": {{propagation-delay}},\n                \"lan-prune-delay-disable\": {{lan-prune-delay-disable}},\n                \"graft-retry-interval\": {{graft-retry-interval}},\n                \"max-graft-retries\": {{max-graft-retries}},\n                \"bfd-enable\": {{bfd-enable}},\n                \"enable\": {{enable}},\n                \"source-address-any\": {{source-address-any}},\n                \"source-address\": \"{{source-address}}\",\n                \"ttl-threshold\": {{ttl-threshold}}\n            },\n            \"igmp\": {\n                \"static-group\": [\n                    \"{{static-group}}\"\n                ],\n                \"static-source\": \"{{static-source}}\",\n                \"querier-enable\": {{querier-enable}},\n                \"query-interval\": {{query-interval}},\n                \"last-member-query-interval\": {{last-member-query-interval}},\n                \"robustness\": {{robustness}},\n                \"query-max-response-time\": {{query-max-response-time}},\n                \"policy-in\": \"{{policy-in}}\",\n                \"ssm-map-policy-in\": \"{{ssm-map-policy-in}}\",\n                \"snooping\": {{snooping}},\n                \"enable\": {{enable}},\n                \"querier-wait-time\": {{querier-wait-time}},\n                \"router-alert-check\": {{router-alert-check}},\n                \"version\": {{version}},\n                \"strict-version\": {{strict-version}},\n                \"igmp-proxy-eth\": \"{{igmp-proxy-eth}}\",\n                \"igmp-proxy-pchannel\": \"{{igmp-proxy-pchannel}}\",\n                \"igmp-proxy-vxlan\": \"{{igmp-proxy-vxlan}}\"\n            },\n            \"mld\": {\n                \"static-group\": [\n                    \"{{static-group}}\"\n                ],\n                \"static-source\": \"{{static-source}}\",\n                \"querier-enable\": {{querier-enable}},\n                \"query-interval\": {{query-interval}},\n                \"last-member-query-interval\": {{last-member-query-interval}},\n                \"robustness\": {{robustness}},\n                \"query-max-response-time\": {{query-max-response-time}},\n                \"policy-in\": \"{{policy-in}}\",\n                \"ssm-map-policy-in\": \"{{ssm-map-policy-in}}\",\n                \"snooping\": {{snooping}},\n                \"enable\": {{enable}},\n                \"querier-wait-time\": {{querier-wait-time}},\n                \"version\": {{version}},\n                \"strict-version\": {{strict-version}},\n                \"mld-proxy-eth\": \"{{mld-proxy-eth}}\",\n                \"mld-proxy-pchannel\": \"{{mld-proxy-pchannel}}\"\n            },\n            \"monitor\": [\n                {\n                    \"traffic-type-ip-monitor-name-direction\": \"{{traffic-type-ip-monitor-name-direction}}\"\n                }\n            ],\n            \"igmp-snooping-eth\": {\n                \"fast-leave-vlan\": [\n                    {{fast-leave-vlan}}\n                ],\n                \"forced-fast-leave-vlan\": [\n                    {{forced-fast-leave-vlan}}\n                ],\n                \"auto-vlan\": [\n                    {{auto-vlan}}\n                ],\n                \"blocked-vlan\": [\n                    {{blocked-vlan}}\n                ],\n                \"forward-vlan\": [\n                    {{forward-vlan}}\n                ]\n            },\n            \"mld-snooping-eth\": {\n                \"fast-leave-vlan\": [\n                    {{fast-leave-vlan}}\n                ],\n                \"forced-fast-leave-vlan\": [\n                    {{forced-fast-leave-vlan}}\n                ],\n                \"auto-vlan\": [\n                    {{auto-vlan}}\n                ],\n                \"blocked-vlan\": [\n                    {{blocked-vlan}}\n                ],\n                \"forward-vlan\": [\n                    {{forward-vlan}}\n                ]\n            },\n            \"pim-bidir\": {\n                \"bidir-enable\": {{bidir-enable}},\n                \"hello-interval\": {{hello-interval}},\n                \"hello-delay\": {{hello-delay}},\n                \"lan-prune-delay\": {{lan-prune-delay}},\n                \"override-interval\": {{override-interval}},\n                \"propagation-delay\": {{propagation-delay}}\n            },\n            \"enable\": {{enable_switchport}},\n            \"routing\": {{routing_port}},\n            \"speed-duplex\": \"{{speed-duplex}}\",\n            \"mtu\": {{mtu}},\n            \"energy-efficient\": {{energy-efficient}},\n            \"speed-override\": {{speed-override}},\n            \"error-control\": \"{{error-control}}\",\n            \"speed-downshift-enable\": {{speed-downshift-enable}},\n            \"link-clock-narrow-tolerance\": {{link-clock-narrow-tolerance}},\n            \"vrf-forwarding\": \"{{vrf-forwarding}}\",\n            \"mac-notify-traps\": [\n                \"{{mac-notify-traps}}\"\n            ],\n            \"trusted-vlans\": [\n                \"{{trusted-vlans}}\"\n            ],\n            \"dpi-enable\": {{dpi-enable}},\n            \"macsec-policy\": \"{{macsec-policy}}\",\n            \"mka-policy\": \"{{mka-policy}}\",\n            \"pvlan-port-mode\": \"{{pvlan-port-mode}}\",\n            \"fault-monitor-profile\": \"{{fault-monitor-profile}}\",\n            \"vrrp\": {\n                \"virtual-router\": [\n                    \"{{virtual-router}}\"\n                ]\n            },\n            \"stp\": {\n                \"enable\": {{stp_enable}},\n                \"bpdu-filter\": {{bpdu-filter}},\n                \"bpdu-guard\": {{bpdu-guard}},\n                \"loop-guard\": {{loop-guard}},\n                \"pvst-filter\": {{pvst-filter}},\n                \"pvst-guard\": {{pvst-guard}},\n                \"root-guard\": {{root-guard}},\n                \"rpvst-filter\": {{rpvst-filter}},\n                \"rpvst-guard\": {{rpvst-guard}},\n                \"tcn-guard\": {{tcn-guard}},\n                \"native-vlan-ieee-bpdu\": {{native-vlan-ieee-bpdu}},\n                \"admin-edge-port\": {{admin-edge-port}},\n                \"admin-edge-port-trunk\": {{admin-edge-port-trunk}},\n                \"cost\": {{cost}},\n                \"priority\": {{priority}},\n                \"hello-time\": {{hello-time}},\n                \"link-type\": \"{{link-type}}\",\n                \"auto-edge\": {{auto-edge}},\n                \"rpvst\": [\n                    {\n                        \"cost\": {{cost}},\n                        \"priority\": {{priority}},\n                        \"vlan-id\": {{vlan-id}}\n                    }\n                ],\n                \"mstp\": [\n                    {\n                        \"cost\": {{cost}},\n                        \"priority\": {{priority}},\n                        \"instance-id\": {{instance-id}}\n                    }\n                ]\n            },\n            \"loop-protect\": {\n                \"enable\": {{loop-protect-enable}},\n                \"action\": \"{{action}}\",\n                \"vlans\": [\n                    {{switchport_vlans}}\n                ],\n                \"transmit-interval\": {{transmit-interval}},\n                \"re-enable-timer\": {{re-enable-timer}},\n                \"trap\": {{trap}}\n            },\n            \"profile-name\": \"{{profile_name}}\",\n            \"description\": \"{{profile_description}}\",\n            \"aaa-profile\": \"{{aaa-profile}}\",\n            \"port-security-policy\": \"{{port-security-policy}}\",\n            \"dhcp-snooping-profile\": \"{{dhcp-snooping-profile}}\",\n            \"nd-snooping-profile\": \"{{nd-snooping-profile}}\",\n            \"ip-source-lockdown-profile\": \"{{ip-source-lockdown-profile}}\",\n            \"dynamic-arp-inspection-profile\": \"{{dynamic-arp-inspection-profile}}\",\n            \"client-iptracker-profile\": \"{{client-iptracker-profile}}\",\n            \"dfp-profile\": \"{{dfp-profile}}\",\n            \"poe\": {\n                \"enabled\": {{enabled}},\n                \"value\": {{value}},\n                \"lldp-detect\": {{lldp-detect}},\n                \"allocation-method\": \"{{allocation-method}}\",\n                \"priority\": \"{{priority}}\",\n                \"assigned-class\": {{assigned-class}},\n                \"pd-class-override\": {{pd-class-override}},\n                \"pre-std-detect\": {{pre-std-detect}},\n                \"power-pairs\": \"{{power-pairs}}\",\n                \"cycle-timeout\": \"{{cycle-timeout}}\"\n            },\n            \"lldp\": {\n                \"mode\": \"{{mode}}\",\n                \"enable-notification\": {{enable-notification}},\n                \"top-change-notify\": {{top-change-notify}},\n                \"trap\": {{trap}},\n                \"med-poe-priority-override\": {{med-poe-priority-override}},\n                \"dcbx-disable\": {{dcbx-disable}},\n                \"dcbx-version\": \"{{dcbx-version}}\",\n                \"tlv\": {\n                    \"basic\": {\n                        \"port-descr\": {{port-descr}},\n                        \"system-name\": {{system-name}},\n                        \"system-descr\": {{system-descr}},\n                        \"system-cap\": {{system-cap}},\n                        \"management-addr\": {{management-addr}}\n                    },\n                    \"dot1\": {\n                        \"port-vlan-id\": {{port-vlan-id}},\n                        \"port-vlan-name\": {{port-vlan-name}}\n                    },\n                    \"dot3tlv\": {\n                        \"mac-phy\": {{mac-phy}},\n                        \"poe-plus\": {{poe-plus}},\n                        \"eee\": {{eee}},\n                        \"mfs\": {{mfs}}\n                    },\n                    \"med\": {\n                        \"capabilities\": {{capabilities}},\n                        \"network-policy\": {{network-policy}},\n                        \"location-id\": {{location-id}},\n                        \"poe\": {{poe}}\n                    },\n                    \"civic-addr\": {\n                        \"country-code\": \"{{country-code}}\",\n                        \"what\": {{what}},\n                        \"ca-pair\": [\n                            {\n                                \"ca-type\": {{ca-type}},\n                                \"ca-value\": \"{{ca-value}}\"\n                            }\n                        ]\n                    },\n                    \"elin-addr\": \"{{elin-addr}}\",\n                    \"host-ipv4-address\": \"{{host-ipv4-address}}\",\n                    \"host-ipv6-address\": \"{{host-ipv6-address}}\"\n                }\n            },\n            \"isolated-vlans\": [\n                {{isolated-vlans}}\n            ],\n            \"forbid-vlans\": [\n                {{forbid-vlans}}\n            ]\n        }\n    ]\n}\n",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/sw-port-profiles",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "sw-port-profiles"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "vlan",
+            "item": [
+                {
+                    "name": "Create L2 vlan",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"l2-vlan\": [\n    {\n      \"private-vlan-type\": \"{{private_vlan_type}}\",\n      \"private-vlan-association\": {{private_vlan_association}},\n      \"isolated-vlan\": {{isolated_vlan}},\n      \"community-vlan\": [\n        {{community_vlan}}\n      ],\n      \"client-ip-tracker-enable\": {{client_ip_tracker_enable}},\n      \"igmp\": {\n        \"static-group\": [\n          \"{{igmp_static_group}}\"\n        ],\n        \"static-source\": \"{{igmp_static_source}}\",\n        \"fastleave-eth-interfaces\": [\n          \"{{igmp_fastleave_eth_interfaces}}\"\n        ],\n        \"forced-fastleave-eth-interfaces\": [\n          \"{{igmp_forced_fastleave_eth_interfaces}}\"\n        ],\n        \"auto-eth-interfaces\": [\n          \"{{igmp_auto_eth_interfaces}}\"\n        ],\n        \"block-eth-interfaces\": [\n          \"{{igmp_block_eth_interfaces}}\"\n        ],\n        \"forward-eth-interfaces\": [\n          \"{{igmp_forward_eth_interfaces}}\"\n        ],\n        \"querier-enable\": {{igmp_querier_enable}},\n        \"last-member-query-interval\": {{igmp_last_member_query_interval}},\n        \"robustness\": {{igmp_robustness}},\n        \"query-max-response-time\": {{igmp_query_max_response_time}},\n        \"policy-in\": \"{{igmp_policy_in}}\",\n        \"preprogram-starg-flow\": {{igmp_preprogram_starg_flow}},\n        \"snooping\": {{igmp_snooping}},\n        \"enable\": {{igmp_enable}},\n        \"version\": {{igmp_version}},\n        \"strict-version\": {{igmp_strict_version}},\n        \"filter-unknown-multicast\": {{igmp_filter_unknown_multicast}},\n        \"query-interval\": {{igmp_query_interval}}\n      },\n      \"mld\": {\n        \"static-group\": [\n          \"{{mld_static_group}}\"\n        ],\n        \"static-source\": \"{{mld_static_source}}\",\n        \"fastleave-eth-interfaces\": [\n          \"{{mld_fastleave_eth_interfaces}}\"\n        ],\n        \"forced-fastleave-eth-interfaces\": [\n          \"{{mld_forced_fastleave_eth_interfaces}}\"\n        ],\n        \"auto-eth-interfaces\": [\n          \"{{mld_auto_eth_interfaces}}\"\n        ],\n        \"block-eth-interfaces\": [\n          \"{{mld_block_eth_interfaces}}\"\n        ],\n        \"forward-eth-interfaces\": [\n          \"{{mld_forward_eth_interfaces}}\"\n        ],\n        \"querier-enable\": {{mld_querier_enable}},\n        \"last-member-query-interval\": {{mld_last_member_query_interval}},\n        \"robustness\": {{mld_robustness}},\n        \"query-max-response-time\": {{mld_query_max_response_time}},\n        \"policy-in\": \"{{mld_policy_in}}\",\n        \"preprogram-starg-flow\": {{mld_preprogram_starg_flow}},\n        \"snooping\": {{mld_snooping}},\n        \"enable\": {{mld_enable}},\n        \"version\": {{mld_version}},\n        \"strict-version\": {{mld_strict_version}},\n        \"query-interval\": {{mld_query_interval}}\n      },\n      \"dhcpv4-snooping\": {\n        \"enable\": {{dhcpv4_snooping_enable}},\n        \"ip-binding-enable\": {{dhcpv4_snooping_ip_binding_enable}}\n      },\n      \"dhcpv6-snooping\": {\n        \"enable\": {{dhcpv6_snooping_enable}},\n        \"allow-bindings-on-trusted-ports\": {{dhcpv6_snooping_allow_bindings_on_trusted_ports}},\n        \"ip-binding-enable\": {{dhcpv6_snooping_ip_binding_enable}},\n        \"guard-policy\": \"{{dhcpv6_snooping_guard_policy}}\"\n      },\n      \"nd-snooping\": {\n        \"nd-guard\": {{nd_snooping_nd_guard}},\n        \"ra-guard\": {{nd_snooping_ra_guard}},\n        \"ra-guard-log\": {{nd_snooping_ra_guard_log}},\n        \"ra-drop\": {{nd_snooping_ra_drop}},\n        \"allow-bindings-on-trusted-ports\": {{nd_snooping_allow_bindings_on_trusted_ports}},\n        \"prefix-list\": [\n          \"{{nd_snooping_prefix_list}}\"\n        ],\n        \"ra-guard-policy\": \"{{nd_snooping_ra_guard_policy}}\",\n        \"enable\": {{nd_snooping_enable}},\n        \"prefix\": [\n          \"{{nd_snooping_prefix}}\"\n        ]\n      },\n      \"dynamic-arp-inspection\": {\n        \"enable\": {{dynamic_arp_inspection_enable}}\n      },\n      \"destination-guard\": {\n        \"enable\": {{destination_guard_enable}}\n      },\n      \"access-list-in\": \"{{access_list_in}}\",\n      \"access-list-out\": \"{{access_list_out}}\",\n      \"option-82\": {{option_82}},\n      \"is-l3-vlan\": {{is_l3_vlan}},\n      \"wired-aaa-profile\": \"{{wired_aaa_profile}}\",\n      \"protocols\": [\n        \"{{vlan_protocols}}\"\n      ],\n      \"voice-enable\": {{voice_enable}},\n      \"ttl-threshold\": {{vlan_ttl_threshold}},\n      \"enable\": {{vlan_enable}},\n      \"policy-in\": \"{{policy_in}}\",\n      \"policy-out\": \"{{policy_out}}\",\n      \"qinq-svlan\": {{qinq_svlan}},\n      \"vlan\": {{vlan_id}},\n      \"description\": \"{{profile_description}}\",\n      \"name\": \"{{vlan_name}}\",\n      \"vrf\": \"{{vlan_vrf}}\"\n    }\n  ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/layer2-vlan",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "layer2-vlan"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "interface-vlan",
+            "item": [
+                {
+                    "name": "Create Interfaces VLAN",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "try {",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    body = JSON.parse(body);",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"interface\": [\n        {\n            \"urpf\": {\n                \"ipv4-enable\": \"{{urpf_ipv4_enable}}\"\n            },\n            \"ip\": {\n                \"mtu\": {{ip_mtu}},\n                \"l3-counters\": \"{{ip_l3_counters}}\"\n            },\n            \"ipv4\": {\n                \"address\": \"{{ipv4_address}}\",\n                \"secondary-ip\": [\n                    \"{{ipv4_secondary_ip}}\"\n                ],\n                \"dhcp-client-id\": \"{{ipv4_dhcp_client_id}}\",\n                \"filter-broadcast-helper\": {{ipv4_filter_broadcast_helper}},\n                \"helper-address\": [\n                    \"{{ipv4_helper_address}}\"\n                ],\n                \"proxy-arp\": \"{{ipv4_proxy_arp}}\",\n                \"option-82\": {{ipv4_option_82}},\n                \"route-redistribute\": {{ipv4_route_redistribute}},\n                \"forwarding\": {{ipv4_forwarding}},\n                \"suppress-arp\": {{ipv4_suppress_arp}},\n                \"vrf-forwarding\": \"{{ipv4_vrf_forwarding}}\",\n                \"dhcps-profile-name\": \"{{ipv4_dhcps_profile_name}}\"\n            },\n            \"ipv4-router-discovery\": {\n                \"enable\": {{ipv4_router_discovery_enable}},\n                \"ra-type\": \"{{ipv4_router_discovery_ra_type}}\",\n                \"hold-time\": {{ipv4_router_discovery_hold_time}},\n                \"min-advertisement-interval\": {{ipv4_router_discovery_min_advertisement_interval}},\n                \"max-advertisement-interval\": {{ipv4_router_discovery_max_advertisement_interval}},\n                \"preference\": {{ipv4_router_discovery_preference}}\n            },\n            \"ip-directed-broadcast-enable\": {{ip_directed_broadcast_enable}},\n            \"policy\": {\n                \"access-list-in\": \"{{policy_access_list_in}}\",\n                \"access-list-out\": \"{{policy_access_list_out}}\",\n                \"access-group-in\": \"{{policy_access_group_in}}\",\n                \"access-group-out\": \"{{policy_access_group_out}}\",\n                \"access-group-session\": \"{{policy_access_group_session}}\",\n                \"access-group-vlan-in\": \"{{policy_access_group_vlan_in}}\",\n                \"access-group-vlan-out\": \"{{policy_access_group_vlan_out}}\",\n                \"service-policy-in\": \"{{policy_service_policy_in}}\",\n                \"service-policy-out\": \"{{policy_service_policy_out}}\"\n            },\n            \"vsx\": {\n                \"shutdown-on-split\": {{vsx_shutdown_on_split}}\n            },\n            \"active-gateway\": {\n                \"ipv4-address\": [\n                    \"{{active_gateway_ipv4_address}}\"\n                ],\n                \"mac-address-v4\": \"{{active_gateway_mac_address_v4}}\",\n                \"extended-mac-address-v4\": {{active_gateway_extended_mac_address_v4}},\n                \"ipv6-address\": [\n                    \"{{active_gateway_ipv6_address}}\"\n                ],\n                \"mac-address-v6\": \"{{active_gateway_mac_address_v6}}\",\n                \"extended-mac-address-v6\": {{active_gateway_extended_mac_address_v6}},\n                \"virtual-gw-l3-src-mac-enable\": {{active_gateway_virtual_gw_l3_src_mac_enable}}\n            },\n            \"arp\": {\n                \"timeout\": {{arp_timeout}},\n                \"neighbor\": [\n                    {\n                        \"address\": \"{{arp_neighbor_address}}\",\n                        \"mac-address\": \"{{arp_neighbor_mac_address}}\"\n                    }\n                ],\n                \"proxy\": {{arp_proxy}},\n                \"local-proxy\": {{arp_local_proxy}},\n                \"process-grat\": {{arp_process_grat}}\n            },\n            \"nd\": {\n                \"timeout\": {{nd_timeout}},\n                \"neighbor\": [\n                    {\n                        \"address\": \"{{nd_neighbor_address}}\",\n                        \"mac-address\": \"{{nd_neighbor_mac_address}}\"\n                    }\n                ],\n                \"local-proxy\": {{nd_local_proxy}}\n            },\n            \"pim-sparse\": {\n                \"hello-delay\": {{pim_sparse_hello_delay}},\n                \"hello-interval\": {{pim_sparse_hello_interval}},\n                \"override-interval\": {{pim_sparse_override_interval}},\n                \"propagation-delay\": {{pim_sparse_propagation_delay}},\n                \"lan-prune-delay-disable\": {{pim_sparse_lan_prune_delay_disable}},\n                \"dr-priority\": {{pim_sparse_dr_priority}},\n                \"datapath-auto-include\": {{pim_sparse_datapath_auto_include}},\n                \"enable\": {{pim_sparse_enable}},\n                \"source-address-any\": {{pim_sparse_source_address_any}},\n                \"source-address\": \"{{pim_sparse_source_address}}\",\n                \"bfd-enable\": {{pim_sparse_bfd_enable}},\n                \"bsr-boundary\": {{pim_sparse_bsr_boundary}}\n            },\n            \"boundary-acl\": \"{{boundary_acl}}\",\n            \"pim-dense\": {\n                \"hello-delay\": {{pim_dense_hello_delay}},\n                \"hello-interval\": {{pim_dense_hello_interval}},\n                \"override-interval\": {{pim_dense_override_interval}},\n                \"propagation-delay\": {{pim_dense_propagation_delay}},\n                \"lan-prune-delay-disable\": {{pim_dense_lan_prune_delay_disable}},\n                \"graft-retry-interval\": {{pim_dense_graft_retry_interval}},\n                \"max-graft-retries\": {{pim_dense_max_graft_retries}},\n                \"bfd-enable\": {{pim_dense_bfd_enable}},\n                \"enable\": {{pim_dense_enable}},\n                \"source-address-any\": {{pim_dense_source_address_any}},\n                \"source-address\": \"{{pim_dense_source_address}}\",\n                \"ttl-threshold\": {{pim_dense_ttl_threshold}}\n            },\n            \"pim-sparse-vlan\": {\n                \"vsx-virtual-neighbor-ipv4\": {{pim_sparse_vlan_vsx_virtual_neighbor_ipv4}},\n                \"vsx-virtual-neighbor-ipv6\": {{pim_sparse_vlan_vsx_virtual_neighbor_ipv6}}\n            },\n            \"pim-bidir\": {\n                \"bidir-enable\": {{pim_bidir_enable}},\n                \"hello-interval\": {{pim_bidir_hello_interval}},\n                \"hello-delay\": {{pim_bidir_hello_delay}},\n                \"lan-prune-delay\": {{pim_bidir_lan_prune_delay}},\n                \"override-interval\": {{pim_bidir_override_interval}},\n                \"propagation-delay\": {{pim_bidir_propagation_delay}}\n            },\n            \"igmp\": {\n                \"static-group\": [\n                    \"{{igmp_static_group}}\"\n                ],\n                \"static-source\": \"{{igmp_static_source}}\",\n                \"querier-enable\": {{igmp_querier_enable}},\n                \"query-interval\": {{igmp_query_interval}},\n                \"last-member-query-interval\": {{igmp_last_member_query_interval}},\n                \"robustness\": {{igmp_robustness}},\n                \"query-max-response-time\": {{igmp_query_max_response_time}},\n                \"policy-in\": \"{{igmp_policy_in}}\",\n                \"ssm-map-policy-in\": \"{{igmp_ssm_map_policy_in}}\",\n                \"snooping\": {{igmp_snooping}},\n                \"enable\": {{igmp_enable}},\n                \"querier-wait-time\": {{igmp_querier_wait_time}},\n                \"router-alert-check\": {{igmp_router_alert_check}},\n                \"version\": {{igmp_version}},\n                \"strict-version\": {{igmp_strict_version}},\n                \"igmp-proxy-eth\": \"{{igmp_proxy_eth}}\",\n                \"igmp-proxy-pchannel\": \"{{igmp_proxy_pchannel}}\",\n                \"igmp-proxy-vxlan\": \"{{igmp_proxy_vxlan}}\"\n            },\n            \"ipv4-relay\": {\n                \"bootp-gateway\": \"{{ipv4_relay_bootp_gateway}}\",\n                \"server\": [\n                    {\n                        \"ip-vrf\": \"{{ipv4_relay_server_ip_vrf}}\"\n                    }\n                ]\n            },\n            \"ipv6-relay\": {\n                \"ucast-server\": [\n                    \"{{ipv6_relay_ucast_server}}\"\n                ],\n                \"mcast-server\": [\n                    {\n                        \"server\": \"{{ipv6_relay_mcast_server}}\",\n                        \"egress-type\": \"{{ipv6_relay_mcast_server_egress_type}}\",\n                        \"egress-interface\": [\n                            \"{{ipv6_relay_mcast_server_egress_interface}}\"\n                        ]\n                    }\n                ],\n                \"all-mcast-egress-type\": \"{{ipv6_relay_all_mcast_egress_type}}\",\n                \"all-server-mcast\": [\n                    \"{{ipv6_relay_all_server_mcast}}\"\n                ]\n            },\n            \"udp-broadcast-forwarder-server\": {\n                \"servers\": [\n                    {\n                        \"port\": {{udp_broadcast_forwarder_server_port}},\n                        \"ip\": [\n                            \"{{udp_broadcast_forwarder_server_ip}}\"\n                        ]\n                    }\n                ]\n            },\n            \"dhcpv6-client-auth\": {\n                \"mode\": \"{{dhcpv6_client_auth_mode}}\",\n                \"key-chain\": \"{{dhcpv6_client_auth_key_chain}}\"\n            },\n            \"id\": {{vlan_id}},\n            \"is-valid\": {{is_valid}},\n            \"enable\": {{enable}},\n            \"description\": \"{{profile_description}}\",\n            \"bandwidth-contract\": \"{{bandwidth_contract}}\",\n            \"bcmc-optimization\": {{bcmc_optimization}},\n            \"mm-auth-lease-time\": {{mm_auth_lease_time}},\n            \"oper-state-up\": {{oper_state_up}},\n            \"jumbo\": {{jumbo}},\n            \"ntp-ipv6-multicast\": {{ntp_ipv6_multicast}},\n            \"disable-layer3\": {{disable_layer3}},\n            \"vrf-forwarding\": \"{{vrf_forwarding}}\",\n            \"tcp-adj-mss\": {{tcp_adj_mss}},\n            \"ip-access-group-in\": \"{{ip_access_group_in}}\",\n            \"qos\": {\n                \"dscp\": {{qos_dscp}},\n                \"priority\": {{qos_priority}}\n            },\n            \"mdns-sd\": {\n                \"mdns-profile\": \"{{mdns_sd_mdns_profile}}\",\n                \"enable\": {{mdns_sd_enable}},\n                \"apply-profile\": \"{{mdns_sd_apply_profile}}\"\n            }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/vlan-interfaces",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "vlan-interfaces"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        },
+        {
+            "name": "snmp",
+            "item": [
+                {
+                    "name": "Create snmp Profile",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "function removePlaceholders(obj) {",
+                                    "    const placeholderPattern = /{{.*}}/;",
+                                    "    if (Array.isArray(obj)) {",
+                                    "        for (let i = obj.length - 1; i >= 0; i--) {",
+                                    "            if (obj[i] === null || obj[i] === \"\" || obj[i] === \"null\" || placeholderPattern.test(obj[i])) {",
+                                    "                obj.splice(i, 1);",
+                                    "            } else if (typeof obj[i] === 'object') {",
+                                    "                removePlaceholders(obj[i]);",
+                                    "                if (Object.keys(obj[i]).length === 0) {",
+                                    "                    obj.splice(i, 1);",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    } else {",
+                                    "        for (let key in obj) {",
+                                    "            if (obj[key] === null || obj[key] === \"\" || obj[key] === \"null\" || placeholderPattern.test(obj[key])) {",
+                                    "                delete obj[key];",
+                                    "            } else if (typeof obj[key] === 'object') {",
+                                    "                removePlaceholders(obj[key]);",
+                                    "                if (Object.keys(obj[key]).length === 0) {",
+                                    "                    delete obj[key];",
+                                    "                }",
+                                    "            }",
+                                    "        }",
+                                    "    }",
+                                    "}",
+                                    "",
+                                    "let body = pm.request.body.raw;",
+                                    "    // console.log(\"Original Payload:\", body);",
+                                    "",
+                                    "try {",
+                                    "    // Replace placeholders with null to make the JSON valid",
+                                    "    body = body.replace(/{{.*?}}/g, 'null');",
+                                    "    // console.log(\"Payload with placeholders replaced:\", body);",
+                                    "",
+                                    "    body = JSON.parse(body);",
+                                    "    console.log(\"Parsed Payload:\", body);",
+                                    "",
+                                    "    removePlaceholders(body);",
+                                    "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+                                    "    console.log(\"Modified Payload:\", pm.request.body.raw);",
+                                    "} catch (e) {",
+                                    "    console.error(\"Error parsing JSON:\", e);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{central_token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"profile\": [\n        {\n            \"notify-group\": [\n                {\n                    \"notify-name\": \"{{notify_group_notify_name}}\",\n                    \"tag\": \"{{notify_group_tag}}\",\n                    \"notify\": \"{{notify_group_notify}}\"\n                }\n            ],\n            \"target\": [\n                {\n                    \"target-name\": \"{{target_name}}\",\n                    \"params\": \"{{target_params}}\",\n                    \"address\": \"{{target_address}}\",\n                    \"address-mask\": \"{{target_address_mask}}\",\n                    \"filter\": \"{{target_filter}}\",\n                    \"max-message-size\": {{target_max_message_size}},\n                    \"udp-port\": {{target_udp_port}},\n                    \"ports\": [\n                        {{target_ports}}\n                    ],\n                    \"retries\": {{target_retries}},\n                    \"timeout\": {{target_timeout}},\n                    \"management-interface\": {{target_management_interface}},\n                    \"tags\": [\n                        \"{{target_tags}}\"\n                    ]\n                }\n            ],\n            \"group\": [\n                {\n                    \"group-name-user\": \"{{group_name_user}}\",\n                    \"snmp-version\": \"{{group_snmp_version}}\"\n                }\n            ],\n            \"macsecmib\": \"{{macsecmib}}\",\n            \"switchauthmib\": \"{{switchauthmib}}\",\n            \"ieee8021mib\": \"{{ieee8021mib}}\",\n            \"param\": [\n                {\n                    \"param-name\": \"{{param_name}}\",\n                    \"user\": \"{{param_user}}\",\n                    \"version\": \"{{param_version}}\",\n                    \"msg-processing\": \"{{param_msg_processing}}\",\n                    \"method\": \"{{param_method}}\"\n                }\n            ],\n            \"v3-community\": [\n                {\n                    \"index\": \"{{v3_community_index}}\",\n                    \"v3-community-name\": \"{{v3_community_name}}\",\n                    \"security\": \"{{v3_community_security}}\",\n                    \"tag\": \"{{v3_community_tag}}\"\n                }\n            ],\n            \"name\": \"{{profile_name}}\",\n            \"description\": \"{{profile_description}}\",\n            \"v1-enable\": {{v1_enable}},\n            \"v2c-enable\": {{v2c_enable}},\n            \"v3-enable\": {{v3_enable}},\n            \"trap-enable\": {{trap_enable}},\n            \"inform-queue-length\": {{inform_queue_length}},\n            \"enable-snmpv3-only\": {{enable_snmpv3_only}},\n            \"unique-req-id-enable\": {{unique_req_id_enable}},\n            \"agent-port\": {{agent_port}},\n            \"auth-privacy-security-level\": {{auth_privacy_security_level}},\n            \"auth-security-level\": {{auth_security_level}},\n            \"response-source\": \"{{response_source}}\",\n            \"loopback-interface\": {{loopback_interface}},\n            \"trap-interface\": {{trap_interface}},\n            \"stats-enable\": {{stats_enable}},\n            \"snmp-source-controller-ip\": {{snmp_source_controller_ip}},\n            \"trap-source\": \"{{trap_source}}\",\n            \"listen\": \"{{listen}}\",\n            \"context\": [\n                {\n                    \"context-name\": \"{{context_name}}\",\n                    \"type\": \"{{context_type}}\",\n                    \"community\": \"{{context_community}}\",\n                    \"vrf\": \"{{context_vrf}}\"\n                }\n            ],\n            \"view\": [\n                {\n                    \"view-name-oid-tree-mask\": \"{{view_name_oid_tree_mask}}\",\n                    \"type\": \"{{view_type}}\"\n                }\n            ],\n            \"community\": [\n                {\n                    \"community\": \"{{community}}\",\n                    \"access-level\": \"{{community_access_level}}\",\n                    \"policy-ipv4\": \"{{community_policy_ipv4}}\",\n                    \"policy-ipv6\": \"{{community_policy_ipv6}}\",\n                    \"access-mode\": \"{{community_access_mode}}\",\n                    \"view-name\": \"{{community_view_name}}\"\n                }\n            ],\n            \"user\": [\n                {\n                    \"user-name\": \"{{user_name}}\",\n                    \"auth-protocol\": \"{{user_auth_protocol}}\",\n                    \"auth-password\": \"{{user_auth_password}}\",\n                    \"auth-pass-text\": \"{{user_auth_pass_text}}\",\n                    \"auth-pass-cypher\": \"{{user_auth_pass_cypher}}\",\n                    \"privacy-protocol\": \"{{user_privacy_protocol}}\",\n                    \"privacy-password\": \"{{user_privacy_password}}\",\n                    \"priv-pass-cypher\": \"{{user_priv_pass_cypher}}\",\n                    \"access-level\": \"{{user_access_level}}\",\n                    \"access-mode\": \"{{user_access_mode}}\",\n                    \"auth-required\": {{user_auth_required}},\n                    \"privacy-required\": {{user_privacy_required}},\n                    \"view-name\": \"{{user_view_name}}\",\n                    \"context\": \"{{user_context}}\"\n                }\n            ],\n            \"remote-user\": [\n                {\n                    \"engine-id-username\": \"{{remote_user_engine_id_username}}\",\n                    \"engine-id\": \"{{remote_user_engine_id}}\",\n                    \"username\": \"{{remote_user_username}}\",\n                    \"auth-protocol\": \"{{remote_user_auth_protocol}}\",\n                    \"auth-password\": \"{{remote_user_auth_password}}\",\n                    \"privacy-protocol\": \"{{remote_user_privacy_protocol}}\",\n                    \"privacy-password\": \"{{remote_user_privacy_password}}\"\n                }\n            ],\n            \"restricted-access\": {{restricted_access}},\n            \"vrf\": [\n                \"{{vrf}}\"\n            ],\n            \"notification-receiver\": [\n                {\n                    \"host-port-version-receiver-name-vrf\": \"{{notification_receiver_host_port_version_receiver_name_vrf}}\",\n                    \"management-interface\": {{notification_receiver_management_interface}},\n                    \"trap-level\": \"{{notification_receiver_trap_level}}\",\n                    \"inform\": {{notification_receiver_inform}},\n                    \"interval\": {{notification_receiver_interval}},\n                    \"retrycount\": {{notification_receiver_retrycount}},\n                    \"host-engineid\": \"{{notification_receiver_host_engineid}}\",\n                    \"trap-group\": [\n                        \"{{notification_receiver_trap_group}}\"\n                    ],\n                    \"notification-type\": [\n                        \"{{notification_receiver_notification_type}}\"\n                    ]\n                }\n            ],\n            \"snmp-response-source\": [\n                {\n                    \"source-ipv4\": \"{{snmp_response_source_source_ipv4}}\",\n                    \"source-ipv6\": \"{{snmp_response_source_source_ipv6}}\",\n                    \"ethernet-interface\": \"{{snmp_response_source_ethernet_interface}}\",\n                    \"lag-interface\": \"{{snmp_response_source_lag_interface}}\",\n                    \"vlan-interface\": {{snmp_response_source_vlan_interface}},\n                    \"loopback-interface\": {{snmp_response_source_loopback_interface}},\n                    \"vrf\": \"{{snmp_response_source_vrf}}\"\n                }\n            ],\n            \"snmp-trap-source\": [\n                {\n                    \"source-ipv4\": \"{{snmp_trap_source_source_ipv4}}\",\n                    \"source-ipv6\": \"{{snmp_trap_source_source_ipv6}}\",\n                    \"ethernet-interface\": \"{{snmp_trap_source_ethernet_interface}}\",\n                    \"lag-interface\": \"{{snmp_trap_source_lag_interface}}\",\n                    \"vlan-interface\": {{snmp_trap_source_vlan_interface}},\n                    \"loopback-interface\": {{snmp_trap_source_loopback_interface}},\n                    \"vrf\": \"{{snmp_trap_source_vrf}}\"\n                }\n            ],\n            \"vrrp-id\": {{vrrp_id}}\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{central_api_base_url}}/network-config/v1alpha1/snmp",
+                            "host": [
+                                "{{central_api_base_url}}"
+                            ],
+                            "path": [
+                                "network-config",
+                                "v1alpha1",
+                                "snmp"
+                            ],
+                            "query": [
+                                {
+                                    "key": "object_type",
+                                    "value": "LOCAL",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "scope_id",
+                                    "value": "{{scope_id}}",
+                                    "description": "ID of scope to create profile",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "persona",
+                                    "value": "{{persona}}",
+                                    "description": "Device function category to create profile under",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Matched Lines:"
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{central_token}}",
+                "type": "string"
+            }
+        ]
+    },
+    "variable": [
+        {
+            "key": "central_api_base_url",
+            "value": "<base_url>",
+            "type": "default"
+        },
+        {
+            "key": "central_token",
+            "value": "<JWT Bearer Token>",
+            "type": "default"
+        },
+        {
+            "key": "scope_id",
+            "value": "",
+            "type": "default"
+        },
+        {
+            "key": "persona",
+            "value": "ex: SWITCH, CAMPUS_AP, MICROBRANCH_AP, BRANCH_GW, MOBILITY_GW, VPNC",
+            "type": "default"
+        },
+        {
+            "key": "resource_name",
+            "value": "",
+            "type": "default"
+        }
+    ]
+}

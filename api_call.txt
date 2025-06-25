@@ -1,0 +1,100 @@
+{
+  api_name: "static-route"
+},
+{
+  "profile": [
+    {
+      "name": "string",
+      "description": "string",
+      "ipv4": [
+        {
+          "prefix-vrf-nexthop-id": "string",
+          "forwarding-type": "NEXTHOP",
+          "next-hop-alias": "string",
+          "next-hop": "string",
+          "interface": {
+            "nexthop-interface-type": "ETH_INTERFACE",
+            "ethernet": "string",
+            "lag": "string",
+            "sub-interface": "string",
+            "svi": 4094,
+            "tunnel-id": 65535
+          },
+          "nullroute": false,
+          "reject": false,
+          "vpn-tunnel": "string",
+          "ipsec-map": "string",
+          "cluster": "string",
+          "bfd": false,
+          "enable-logging": false,
+          "vlan-id": 4094,
+          "distance": 1,
+          "tag": 4294967295,
+          "next-hop-ip": "string",
+          "use-forwarding-address": false,
+          "bfd-source-ip": "string",
+          "metric": 1,
+          "name": "string",
+          "bfd-destination-ip": "string"
+        }
+      ],
+      "ipv6": [
+        {
+          "prefix-vrf-nexthop-id": "string",
+          "prefix": "string",
+          "vrf": "string",
+          "nexthop-id": 255,
+          "forwarding-type": "NEXTHOP",
+          "next-hop-alias": "string",
+          "next-hop": "string",
+          "interface": {
+            "nexthop-interface-type": "ETH_INTERFACE",
+            "ethernet": "string",
+            "lag": "string",
+            "sub-interface": "string",
+            "svi": 4094,
+            "tunnel-id": 65535
+          },
+          "nullroute": false,
+          "reject": false,
+          "source-interface": {
+            "source-interface-type": "ETH_INTERFACE",
+            "ethernet": "string",
+            "lag": "string",
+            "sub-interface": "string",
+            "svi": 4094,
+            "tunnel-id": 65535
+          },
+          "enable-logging": false,
+          "vlan-id": 4094,
+          "distance": 1,
+          "tag": 4294967295,
+          "ipsec-map": "string",
+          "metric": 1,
+          "nexthop-linklocal": "string",
+          "metric-linklocal": 1,
+          "tunnel-id": 255,
+          "name": "string"
+        }
+      ],
+      "default-gateway": [
+        {
+          "dg-name": "string",
+          "forwarding-type": "NEXTHOP",
+          "ipv4-address-alias": "string",
+          "ipv4-address": "string",
+          "dhcp": false,
+          "pppoe": false,
+          "metric": 1
+        }
+      ],
+      "ipv6-default-gateway": [
+        {
+          "ipv6-address": "string",
+          "metric": 1
+        }
+      ],
+      "route-gc-interval": 30
+    }
+  ]
+}

@@ -1,0 +1,859 @@
+hostname %_sys_hostname%
+banner motd !
+**********************************************************
+NOTICE TO USERS
+This is a private computer system and is the property of
+Aruba Networks. It is for authorized use only.
+users (authorized or unauthorized) have no explicit or
+implicit expectation of privacy while connected to this
+system.
+Any or all uses of this system and all files on this system
+may be intercepted, monitored, recorded, copied, audited,
+inspected, and disclosed to an authorized site, Aruba networks,
+and law enforcement personnel
+(foreign and domestic).
+By using this system, the user consents to such interception,
+monitoring, recording, copying, auditing, inspection, and
+disclosure at the discretion of an authorized site or Aruba Networks
+personnel.
+Unauthorized or improper use of this system may result in
+administrative disciplinary action and civil and criminal
+penalties. By continuing to use of this system you indicate
+your awareness of and consent to these terms and conditions
+of use. LOG OFF IMMEDIATELY if you do not agree to the
+conditions stated in this warning.
+***********************************************************!
+user admin group administrators password plaintext *****
+loop-protect transmit-interval 3
+loop-protect re-enable-timer 15
+radius-server host 10.2.120.95 key plaintext *****
+radius-server host 10.2.120.94 key plaintext *****
+radius dyn-authorization enable
+radius-server host 10.2.120.95 tracking enable key plaintext *****
+radius-server host 10.2.120.94 tracking enable key plaintext abc
+client track ip update-method probe
+aaa authentication port-access dot1x authenticator
+enable
+aaa authentication port-access mac-auth
+addr-format multi-dash-uppercase
+auth-method pap
+enable
+ntp server 10.2.120.98  iburst version 3
+ntp server 10.2.120.99 iburst version 3
+ntp enable
+!
+!
+allow-unsupported-transceiver
+!
+!
+ssh server vrf default
+ssh server vrf mgmt
+dhcpv4-snooping
+vsf member 1 
+    type jl666a
+    link 1 1/1/26
+    link 2 1/1/25
+vsf member 2 
+    type jl666a
+    link 1 2/1/25
+    link 2 2/1/26
+vlan 1
+vlan 100
+    name MGMT
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 101
+    shutdown
+    name EMPLOYEE
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 102
+    name CAMERA
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 103
+    name IOT
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 104
+    name GUEST
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 105
+    name REJECT
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 106
+    name CRITICAL
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+vlan 107
+    name QUARENATINE
+    dhcpv4-snooping
+    arp inspection
+    ip igmp snooping enable
+
+spanning-tree mode rpvst
+spanning-tree
+spanning-tree priority 15
+spanning-tree vlan 100-107
+port-access role REJECT
+    reauth-period 120
+    vlan access 105
+port-access lldp-group AP-LLDP-GROUP
+     seq 10 match vendor-oui 000b86
+     seq 20 match vendor-oui D8C7C8
+     seq 30 match vendor-oui 6CF37F
+     seq 40 match vendor-oui 186472
+     seq 50 match sys-desc ArubaOS
+port-access role EMPLOYEE
+    reauth-period 120
+    vlan access 101
+port-access role  CAMERA
+    reauth-period 120
+    vlan access 102
+port-access role  IOT
+    reauth-period 120
+    vlan access 103
+port-access role GUEST
+    reauth-period 120
+    vlan access 104
+port-access role ARUBA-AP
+    auth-mode device-mode
+    vlan trunk native 100
+    vlan trunk allowed 100-101,104-107
+port-access role REJECT
+    reauth-period 120
+    vlan access 105
+port-access role CRITICAL
+  reauth-period 120
+  vlan access 106
+port-access role QUARANTINE
+    reauth-period 120
+    vlan access 107
+port-access device-profile ARUBA_AP
+    enable
+    associate role ARUBA-AP
+    associate lldp-group AP-LLDP-GROUP
+aaa authentication port-access dot1x authenticator
+    enable
+fault-monitor profile PORT_ERRORS
+    excessive-broadcasts
+    excessive-link-flaps
+    excessive-jabbers
+    excessive-fragments
+    excessive-crc-errors
+    excessive-tx-drops
+aaa authentication port-access dot1x authenticator
+    enable
+aaa authentication port-access mac-auth
+    addr-format multi-dash-uppercase
+    enable        
+interface vlan 1
+    no ip dhcp
+interface vlan 100
+    description MGMT
+    ip dhcp
+   
+interface 1/1/1
+     no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/2
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/3
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/4
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/5
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/6
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/7
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/8
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/9
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/10
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/11
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/12
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/13
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/14
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/15
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/16
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/17
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/18
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/19
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/20
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/21
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 1/1/22
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/1
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/2
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/4
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/5
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/6
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/7
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/8
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/9
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect    
+interface 2/1/10
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/11
+    no shutdown
+    description ACCESS_PORT
+    no routing
+    vlan access 1
+    spanning-tree bpdu-guard
+    spanning-tree root-guard
+    spanning-tree tcn-guard
+    spanning-tree port-type admin-edge
+    port-access onboarding-method precedence device-profile  aaa
+    aaa authentication port-access auth-precedence mac-auth dot1x
+    aaa authentication port-access client-limit 5
+    aaa authentication port-access critical-role CRITICAL
+    aaa authentication port-access reject-role REJECT
+    aaa authentication port-access dot1x authenticator
+        eapol-timeout 30
+        max-eapol-requests 1
+        max-retries 1
+        enable
+    aaa authentication port-access mac-auth
+        enable
+    loop-protect
+interface 2/1/24
+  description UPLINK
+  no shutdown
+  no routing
+  vlan trunk native 100
+  vlan trunk allowed 100-107
+  arp inspection trust
+  dhcpv4-snooping trust
+
