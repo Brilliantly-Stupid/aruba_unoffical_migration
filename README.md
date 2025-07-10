@@ -43,11 +43,7 @@ Example collection below:
 
 
 Tool Deep Dive:
-[migration Almost Final.mp4](media/migration_Almost_Final.mp4)
+[migration Almost Final.mp4](https://share.descript.com/view/6CoUDvSxEvW)
 
-
-<video width="320" height="240" controls>
-  <source src="media/migration_Almost_Final.mp" type="video/mp4">
-</video>
 
 
